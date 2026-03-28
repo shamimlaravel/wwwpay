@@ -216,7 +216,7 @@ class PaymentServiceProvider extends ServiceProvider
 
         // Publish migrations
         $this->publishes([
-            __DIR__.'/../Migrations/' => database_path('migrations'),
+            dirname(__DIR__).'/../database/migrations/' => database_path('migrations'),
         ], 'payment-migrations');
 
         // Publish views (if any)

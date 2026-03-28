@@ -188,8 +188,15 @@ class GatewayTest extends TestCase
         $this->assertInstanceOf(PaymentResponse::class, $response);
     }
 
+    public function test_gateway_has_subscribe_method(): void
+    {
+        $gateway = new StripeGateway([]);
+        
+        $this->assertTrue(method_exists($gateway, 'subscribe'));
+    }
+    
     public function test_gateway_subscribe_returns_subscription_instance()
     {
-        $this->markTestSkipped('Subscription tests require Laravel application context. Use Integration tests instead.');
+        $this->markTestSkipped('Subscription tests require Laravel application context with database connection.');
     }
 }

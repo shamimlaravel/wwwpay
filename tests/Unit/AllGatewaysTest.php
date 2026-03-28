@@ -202,9 +202,55 @@ class AllGatewaysTest extends TestCase
         $this->assertEquals('telr', $gateway->getName());
     }
 
+    public function test_all_gateways_have_subscribe_method(): void
+    {
+        $gateways = [
+            new StripeGateway([]),
+            new PayPalGateway([]),
+            new BkashGateway([]),
+            new NagadGateway([]),
+            new UpiGateway([]),
+            new PhonePeGateway([]),
+            new PaytmGateway([]),
+            new JazzCashGateway([]),
+            new EasypaisaGateway([]),
+            new PayTabsGateway([]),
+            new TelrGateway([]),
+            new MadaGateway([]),
+            new PayFastGateway([]),
+            new SnapScanGateway([]),
+            new AlipayGateway([]),
+            new WeChatPayGateway([]),
+            new BitcoinGateway([]),
+            new EthereumGateway([]),
+            new SquareGateway([]),
+            new AuthorizeGateway([]),
+            new MonerisGateway([]),
+            new MercadoPagoGateway([]),
+            new PagSeguroGateway([]),
+            new KlarnaGateway([]),
+            new SEPAGateway([]),
+            new AdyenGateway([]),
+            new iDEALGateway([]),
+            new BancontactGateway([]),
+            new PayPayGateway([]),
+            new LinePayGateway([]),
+            new GrabPayGateway([]),
+            new FlutterwaveGateway([]),
+            new PaystackGateway([]),
+        ];
+
+        foreach ($gateways as $gateway) {
+            $this->assertTrue(
+                method_exists($gateway, 'subscribe'),
+                get_class($gateway) . ' should have subscribe() method'
+            );
+        }
+    }
+
     public function test_all_gateways_return_subscription_instance()
     {
-        $this->markTestSkipped('Subscription tests require Laravel application context. Use Integration tests instead.');
+        $this->markTestSkipped('Subscription tests require Laravel application context with database connection.');
     }
 
     public function test_all_gateways_return_valid_payment_response()
