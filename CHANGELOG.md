@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.4] - 2026-03-29
+
+### 🚀 Major Release - 195 Payment Gateways
+
+#### New Features
+- **30 New Regional Gateways** added
+- **Africa**: Pesapal, Jenga, Flutterwave U, Sumsub
+- **MENA**: QPay (Qatar), OmanNet, Benefit (Bahrain)
+- **Asia Pacific**: HK Pay, EasyPay (Taiwan), NewebPay, CvsPay
+- **Europe**: Nordea, Barclay, Moneta, Clearhaus
+- **Latin America**: MercadoPago CO, TodoPago (Argentina)
+- **Americas**: Stripe CA
+- **Global**: ePay, 2Checkout, Paymentwall, Gumroad, Paddle, LemonSqueezy, BitPay, CoinBase
+- **South Asia**: Billdesk, Atom, Payzii, SSLCommerz BD
+
+---
+
 ## [1.0.3] - 2026-03-29
 
 ### 🚀 Major Release - 165 Payment Gateways

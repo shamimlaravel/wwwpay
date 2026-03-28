@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-8.1+-blue.svg" alt="PHP">
   <img src="https://img.shields.io/badge/Laravel-9+-red.svg" alt="Laravel">
-  <img src="https://img.shields.io/badge/Gateways-165-orange.svg" alt="Gateways">
+  <img src="https://img.shields.io/badge/Gateways-195-orange.svg" alt="Gateways">
   <img src="https://img.shields.io/badge/Tests-153%20passing-brightgreen.svg" alt="Tests">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
 </p>
@@ -14,11 +14,11 @@
   <img src="https://img.shields.io/github/v/tag/shamimlaravel/wwwpay?label=version" alt="Version">
 </p>
 
-> All-in-one payment gateway package for Laravel with **165 global, crypto, regional payment methods**, and **Binance P2P & B2B** integration in a single unified API.
+> All-in-one payment gateway package for Laravel with **195 global, crypto, regional payment methods**, and **Binance P2P & B2B** integration in a single unified API.
 
 ## Features
 
-- **165 Payment Gateways** - Global, Regional, Cryptocurrency, and Binance P2P/B2B
+- **195 Payment Gateways** - Global, Regional, Cryptocurrency, and Binance P2P/B2B
 - **Unified API** - Consistent interface across all gateways
 - **Multi-currency Support** - Automatic currency conversion
 - **B2B Payments** - Invoices, wire transfers, ACH, corporate cards

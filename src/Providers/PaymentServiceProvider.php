@@ -175,6 +175,36 @@ use ShamimStack\WwwPay\Gateways\AsiaPacific\PayLahGateway;
 use ShamimStack\WwwPay\Gateways\MiddleEast\PayFortGateway;
 use ShamimStack\WwwPay\Gateways\AsiaPacific\Japan\PayPayJPGateway;
 use ShamimStack\WwwPay\Gateways\AsiaPacific\Japan\StripeJPGateway;
+use ShamimStack\WwwPay\Gateways\Africa\PesapalGateway;
+use ShamimStack\WwwPay\Gateways\Africa\JengaGateway;
+use ShamimStack\WwwPay\Gateways\Africa\FlutterwaveUGateway;
+use ShamimStack\WwwPay\Gateways\Africa\SumsubGateway;
+use ShamimStack\WwwPay\Gateways\MENA\QPayGateway;
+use ShamimStack\WwwPay\Gateways\MENA\OmanNetGateway;
+use ShamimStack\WwwPay\Gateways\MENA\BenefitGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\HKPayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\EasyPayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\NewebPayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\CvsPayGateway;
+use ShamimStack\WwwPay\Gateways\Europe\NordeaGateway;
+use ShamimStack\WwwPay\Gateways\Europe\BarclayGateway;
+use ShamimStack\WwwPay\Gateways\Europe\MonetaGateway;
+use ShamimStack\WwwPay\Gateways\Europe\ClearhausGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\MercadoPagoCOGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\TodoPagoGateway;
+use ShamimStack\WwwPay\Gateways\Americas\StripeCAGateway;
+use ShamimStack\WwwPay\Gateways\Global\EpayGateway;
+use ShamimStack\WwwPay\Gateways\Global\TwoCheckoutGateway;
+use ShamimStack\WwwPay\Gateways\Global\PaymentwallGateway;
+use ShamimStack\WwwPay\Gateways\Global\GumroadGateway;
+use ShamimStack\WwwPay\Gateways\Global\PaddleGateway;
+use ShamimStack\WwwPay\Gateways\Global\LemonSqueezyGateway;
+use ShamimStack\WwwPay\Gateways\Global\BitPayGateway;
+use ShamimStack\WwwPay\Gateways\Global\CoinBaseGateway;
+use ShamimStack\WwwPay\Gateways\SouthAsia\BilldeskGateway;
+use ShamimStack\WwwPay\Gateways\SouthAsia\AtomGateway;
+use ShamimStack\WwwPay\Gateways\SouthAsia\PayziiGateway;
+use ShamimStack\WwwPay\Gateways\SouthAsia\SslCommerzBDGateway;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -856,6 +886,126 @@ class PaymentServiceProvider extends ServiceProvider
 
         $this->app->singleton('payment.safaricommpesa', function ($app) {
             return new SafaricomMpesaGateway($app['config']->get('payment.gateways.safaricommpesa'));
+        });
+
+        $this->app->singleton('payment.pesapal', function ($app) {
+            return new PesapalGateway($app['config']->get('payment.gateways.pesapal'));
+        });
+
+        $this->app->singleton('payment.jenga', function ($app) {
+            return new JengaGateway($app['config']->get('payment.gateways.jenga'));
+        });
+
+        $this->app->singleton('payment.flutterwave_u', function ($app) {
+            return new FlutterwaveUGateway($app['config']->get('payment.gateways.flutterwave_u'));
+        });
+
+        $this->app->singleton('payment.qpay', function ($app) {
+            return new QPayGateway($app['config']->get('payment.gateways.qpay'));
+        });
+
+        $this->app->singleton('payment.omannet', function ($app) {
+            return new OmanNetGateway($app['config']->get('payment.gateways.omannet'));
+        });
+
+        $this->app->singleton('payment.benefit', function ($app) {
+            return new BenefitGateway($app['config']->get('payment.gateways.benefit'));
+        });
+
+        $this->app->singleton('payment.hkpay', function ($app) {
+            return new HKPayGateway($app['config']->get('payment.gateways.hkpay'));
+        });
+
+        $this->app->singleton('payment.easypay', function ($app) {
+            return new EasyPayGateway($app['config']->get('payment.gateways.easypay'));
+        });
+
+        $this->app->singleton('payment.newebpay', function ($app) {
+            return new NewebPayGateway($app['config']->get('payment.gateways.newebpay'));
+        });
+
+        $this->app->singleton('payment.nordea', function ($app) {
+            return new NordeaGateway($app['config']->get('payment.gateways.nordea'));
+        });
+
+        $this->app->singleton('payment.barclay', function ($app) {
+            return new BarclayGateway($app['config']->get('payment.gateways.barclay'));
+        });
+
+        $this->app->singleton('payment.mercadopago_co', function ($app) {
+            return new MercadoPagoCOGateway($app['config']->get('payment.gateways.mercadopago_co'));
+        });
+
+        $this->app->singleton('payment.todopago', function ($app) {
+            return new TodoPagoGateway($app['config']->get('payment.gateways.todopago'));
+        });
+
+        $this->app->singleton('payment.stripe_ca', function ($app) {
+            return new StripeCAGateway($app['config']->get('payment.gateways.stripe_ca'));
+        });
+
+        $this->app->singleton('payment.epay', function ($app) {
+            return new EpayGateway($app['config']->get('payment.gateways.epay'));
+        });
+
+        $this->app->singleton('payment.2checkout', function ($app) {
+            return new TwoCheckoutGateway($app['config']->get('payment.gateways.2checkout'));
+        });
+
+        $this->app->singleton('payment.paymentwall', function ($app) {
+            return new PaymentwallGateway($app['config']->get('payment.gateways.paymentwall'));
+        });
+
+        $this->app->singleton('payment.gumroad', function ($app) {
+            return new GumroadGateway($app['config']->get('payment.gateways.gumroad'));
+        });
+
+        $this->app->singleton('payment.paddle', function ($app) {
+            return new PaddleGateway($app['config']->get('payment.gateways.paddle'));
+        });
+
+        $this->app->singleton('payment.lemonsqueezy', function ($app) {
+            return new LemonSqueezyGateway($app['config']->get('payment.gateways.lemonsqueezy'));
+        });
+
+        $this->app->singleton('payment.billdesk', function ($app) {
+            return new BilldeskGateway($app['config']->get('payment.gateways.billdesk'));
+        });
+
+        $this->app->singleton('payment.atom', function ($app) {
+            return new AtomGateway($app['config']->get('payment.gateways.atom'));
+        });
+
+        $this->app->singleton('payment.payzii', function ($app) {
+            return new PayziiGateway($app['config']->get('payment.gateways.payzii'));
+        });
+
+        $this->app->singleton('payment.sslcommerz_bd', function ($app) {
+            return new SslCommerzBDGateway($app['config']->get('payment.gateways.sslcommerz_bd'));
+        });
+
+        $this->app->singleton('payment.sumsub', function ($app) {
+            return new SumsubGateway($app['config']->get('payment.gateways.sumsub'));
+        });
+
+        $this->app->singleton('payment.moneta', function ($app) {
+            return new MonetaGateway($app['config']->get('payment.gateways.moneta'));
+        });
+
+        $this->app->singleton('payment.bitpay', function ($app) {
+            return new BitPayGateway($app['config']->get('payment.gateways.bitpay'));
+        });
+
+        $this->app->singleton('payment.coinbase', function ($app) {
+            return new CoinBaseGateway($app['config']->get('payment.gateways.coinbase'));
+        });
+
+        $this->app->singleton('payment.clearhaus', function ($app) {
+            return new ClearhausGateway($app['config']->get('payment.gateways.clearhaus'));
+        });
+
+        $this->app->singleton('payment.cvspay', function ($app) {
+            return new CvsPayGateway($app['config']->get('payment.gateways.cvspay'));
         });
     }
 
