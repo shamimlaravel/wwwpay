@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WwwPay - All-in-One Payment Gateway for Laravel</title>
+    <link rel="stylesheet" href="assets/css/docs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">💳</span>
+                    <span class="logo-text">WwwPay</span>
+                </div>
+                <span class="version-badge">v1.0.0</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3 class="nav-title">Getting Started</h3>
+                    <ul class="nav-list">
+                        <li><a href="#introduction" class="nav-link active">Introduction</a></li>
+                        <li><a href="#installation" class="nav-link">Installation</a></li>
+                        <li><a href="#configuration" class="nav-link">Configuration</a></li>
+                        <li><a href="#quick-start" class="nav-link">Quick Start</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-title">Gateways</h3>
+                    <ul class="nav-list">
+                        <li><a href="#global-gateways" class="nav-link">Global (Stripe, PayPal)</a></li>
+                        <li><a href="#south-asia" class="nav-link">South Asia</a></li>
+                        <li><a href="#middle-east" class="nav-link">Middle East</a></li>
+                        <li><a href="#africa" class="nav-link">Africa</a></li>
+                        <li><a href="#europe" class="nav-link">Europe</a></li>
+                        <li><a href="#asia-pacific" class="nav-link">Asia Pacific</a></li>
+                        <li><a href="#americas" class="nav-link">Americas</a></li>
+                        <li><a href="#crypto" class="nav-link">Cryptocurrency</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-title">Features</h3>
+                    <ul class="nav-list">
+                        <li><a href="#b2b-payments" class="nav-link">B2B Payments</a></li>
+                        <li><a href="#p2p-payments" class="nav-link">P2P Payments</a></li>
+                        <li><a href="#subscriptions" class="nav-link">Subscriptions</a></li>
+                        <li><a href="#webhooks" class="nav-link">Webhooks</a></li>
+                        <li><a href="#currency" class="nav-link">Currency</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-title">API Reference</h3>
+                    <ul class="nav-list">
+                        <li><a href="#facade" class="nav-link">Payment Facade</a></li>
+                        <li><a href="#response" class="nav-link">PaymentResponse</a></li>
+                        <li><a href="#security" class="nav-link">Security</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <h3 class="nav-title">Resources</h3>
+                    <ul class="nav-list">
+                        <li><a href="#cli-commands" class="nav-link">CLI Commands</a></li>
+                        <li><a href="#troubleshooting" class="nav-link">Troubleshooting</a></li>
+                        <li><a href="api-reference.html" class="nav-link">Full API Docs</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section id="introduction" class="hero-section">
+                <div class="hero-content">
+                    <h1>WwwPay</h1>
+                    <p class="hero-subtitle">All-in-One Payment Gateway for Laravel</p>
+                    <p class="hero-description">
+                        Integrate 33+ payment gateways from around the world with a single, unified API.
+                        Stripe, PayPal, bKash, Paystack, Mada, and many more.
+                    </p>
+                    <div class="hero-badges">
+                        <span class="badge">PHP 8.1+</span>
+                        <span class="badge">Laravel 9+</span>
+                        <span class="badge">33+ Gateways</span>
+                        <span class="badge">MIT License</span>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#installation" class="btn btn-primary">Get Started</a>
+                        <a href="https://github.com/shamimstack/wwwpay" class="btn btn-secondary">GitHub</a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Installation Section -->
+            <section id="installation" class="content-section">
+                <h2>Installation</h2>
+                <p>Install WwwPay via Composer:</p>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code class="language-bash">composer require shamimstack/wwwpay</code></pre>
+                </div>
+                
+                <p>Run the interactive installer:</p>
+                <div class="code-block">
+                    <pre><code class="language-bash">php artisan payment:install</code></pre>
+                </div>
+            </section>
+            
+            <!-- Configuration Section -->
+            <section id="configuration" class="content-section">
+                <h2>Configuration</h2>
+                <p>Add your gateway credentials to <code>.env</code>:</p>
+                <div class="code-block">
+                    <pre><code class="language-env"># Default Gateway
+PAYMENT_DEFAULT_GATEWAY=stripe
+
+# Stripe
+STRIPE_KEY=sk_test_xxxxx
+STRIPE_SECRET=sk_test_xxxxx
+STRIPE_WEBHOOK_SECRET=whsec_xxxxx
+
+# PayPal
+PAYPAL_CLIENT_ID=xxxxx
+PAYPAL_CLIENT_SECRET=xxxxx
+PAYPAL_MODE=sandbox
+
+# Paystack (Africa)
+PAYSTACK_PUBLIC_KEY=pk_live_xxxxx
+PAYSTACK_SECRET_KEY=sk_live_xxxxx</code></pre>
+                </div>
+            </section>
+            
+            <!-- Quick Start Section -->
+            <section id="quick-start" class="content-section">
+                <h2>Quick Start</h2>
+                
+                <h3>Process a Payment</h3>
+                <div class="code-block">
+                    <pre><code class="language-php">use ShamimStack\WwwPay\Facades\Payment;
+
+// With default gateway
+$response = Payment::pay([
+    'amount' => 100.00,
+    'currency' => 'USD',
+    'return_url' => route('payment.success'),
+]);
+
+// With specific gateway
+$response = Payment::gateway('paystack')->pay([
+    'amount' => 10000.00,
+    'currency' => 'NGN',
+    'email' => 'customer@example.com',
+]);
+
+if ($response->isSuccessful()) {
+    $transactionId = $response->getTransactionId();
+}</code></pre>
+                </div>
+                
+                <h3>Handle Refunds</h3>
+                <div class="code-block">
+                    <pre><code class="language-php">// Full refund
+$response = Payment::refund($transactionId);
+
+// Partial refund
+$response = Payment::refund($transactionId, 50.00);</code></pre>
+                </div>
+                
+                <h3>B2B Payments</h3>
+                <div class="code-block">
+                    <pre><code class="language-php">use ShamimStack\WwwPay\B2B\B2BPayment;
+
+// Create invoice
+$invoice = B2BPayment::createInvoice([
+    'amount' => 1000.00,
+    'currency' => 'USD',
+    'client_name' => 'Acme Corp',
+    'client_email' => 'billing@acme.com',
+]);</code></pre>
+                </div>
+                
+                <h3>P2P Payments</h3>
+                <div class="code-block">
+                    <pre><code class="language-php">use ShamimStack\WwwPay\P2P\P2PPayment;
+
+// Send money
+$transfer = P2PPayment::sendMoney([
+    'amount' => 100.00,
+    'currency' => 'USD',
+    'recipient_id' => 'user_456',
+]);
+
+// Split payment
+$split = P2PPayment::splitPayment([
+    'total_amount' => 300.00,
+    'participants' => ['user_1', 'user_2', 'user_3'],
+]);</code></pre>
+                </div>
+            </section>
+            
+            <!-- Gateways Section -->
+            <section id="gateways" class="content-section">
+                <h2>Supported Gateways</h2>
+                
+                <div class="gateway-grid" id="gateway-list">
+                    <!-- Global -->
+                    <div class="gateway-card" id="global-gateways">
+                        <h4>🌐 Global</h4>
+                        <ul>
+                            <li><strong>Stripe</strong> - Credit cards worldwide</li>
+                            <li><strong>PayPal</strong> - Global digital payments</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- South Asia -->
+                    <div class="gateway-card" id="south-asia">
+                        <h4>🌏 South Asia</h4>
+                        <ul>
+                            <li><strong>bKash</strong> - Bangladesh</li>
+                            <li><strong>Nagad</strong> - Bangladesh</li>
+                            <li><strong>UPI</strong> - India</li>
+                            <li><strong>PhonePe</strong> - India</li>
+                            <li><strong>Paytm</strong> - India</li>
+                            <li><strong>JazzCash</strong> - Pakistan</li>
+                            <li><strong>Easypaisa</strong> - Pakistan</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Middle East -->
+                    <div class="gateway-card" id="middle-east">
+                        <h4>🏜️ Middle East</h4>
+                        <ul>
+                            <li><strong>PayTabs</strong> - UAE, Saudi Arabia</li>
+                            <li><strong>Telr</strong> - Middle East</li>
+                            <li><strong>Mada</strong> - Saudi Arabia</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Africa -->
+                    <div class="gateway-card" id="africa">
+                        <h4>🌍 Africa</h4>
+                        <ul>
+                            <li><strong>Flutterwave</strong> - Pan-Africa</li>
+                            <li><strong>Paystack</strong> - Nigeria, Ghana</li>
+                            <li><strong>M-Pesa</strong> - Kenya</li>
+                            <li><strong>Fawry</strong> - Egypt</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Europe -->
+                    <div class="gateway-card" id="europe">
+                        <h4>🏰 Europe</h4>
+                        <ul>
+                            <li><strong>Klarna</strong> - Buy now, pay later</li>
+                            <li><strong>Adyen</strong> - EU payments</li>
+                            <li><strong>iDEAL</strong> - Netherlands</li>
+                            <li><strong>Bancontact</strong> - Belgium</li>
+                            <li><strong>SEPA</strong> - EU bank transfers</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Asia Pacific -->
+                    <div class="gateway-card" id="asia-pacific">
+                        <h4>🌸 Asia Pacific</h4>
+                        <ul>
+                            <li><strong>Alipay</strong> - China</li>
+                            <li><strong>WeChat Pay</strong> - China</li>
+                            <li><strong>PayPay</strong> - Japan</li>
+                            <li><strong>Line Pay</strong> - Japan</li>
+                            <li><strong>GrabPay</strong> - Southeast Asia</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Americas -->
+                    <div class="gateway-card" id="americas">
+                        <h4>🌎 Americas</h4>
+                        <ul>
+                            <li><strong>Square</strong> - North America</li>
+                            <li><strong>Authorize.net</strong> - North America</li>
+                            <li><strong>Moneris</strong> - Canada</li>
+                            <li><strong>MercadoPago</strong> - Latin America</li>
+                            <li><strong>PagSeguro</strong> - Brazil</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Crypto -->
+                    <div class="gateway-card" id="crypto">
+                        <h4>₿ Cryptocurrency</h4>
+                        <ul>
+                            <li><strong>Bitcoin</strong> - BTC payments</li>
+                            <li><strong>Ethereum</strong> - ETH payments</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Features Section -->
+            <section id="features" class="content-section">
+                <h2>Features</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🎯 Unified API</h4>
+                        <p>One consistent interface for all payment gateways</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💱 Multi-Currency</h4>
+                        <p>Automatic currency conversion and formatting</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔒 Security</h4>
+                        <p>Fraud detection and PCI compliance helpers</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📡 Webhooks</h4>
+                        <p>Secure webhook handling for all gateways</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💼 B2B Payments</h4>
+                        <p>Invoicing, wire transfers, purchase orders</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>👥 P2P Payments</h4>
+                        <p>Send money, split bills, escrow</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CLI Section -->
+            <section id="cli-commands" class="content-section">
+                <h2>CLI Commands</h2>
+                
+                <div class="cli-commands">
+                    <div class="cli-item">
+                        <code>php artisan payment:install</code>
+                        <p>Interactive installer for payment gateways</p>
+                    </div>
+                    <div class="cli-item">
+                        <code>php artisan payment:list</code>
+                        <p>List all available payment gateways</p>
+                    </div>
+                    <div class="cli-item">
+                        <code>php artisan payment:test stripe</code>
+                        <p>Test a specific gateway connection</p>
+                    </div>
+                    <div class="cli-item">
+                        <code>php artisan payment:webhook</code>
+                        <p>Setup webhook routes for gateways</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Footer -->
+            <footer class="docs-footer">
+                <p>WwwPay - All-in-One Payment Gateway for Laravel</p>
+                <p class="copyright">MIT License © 2024 shamimstack</p>
+            </footer>
+        </main>
+    </div>
+    
+    <script src="assets/js/docs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
