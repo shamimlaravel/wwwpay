@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.2] - 2026-03-29
+
+### 🎉 Major Release - Binance P2P & B2B Integration
+
+#### New Features
+- **Binance P2P Gateway** - Full peer-to-peer trading support
+- **Binance B2B Gateway** - Business payment solutions
+- **38 REST API Endpoints** - Complete Binance integration
+- **BinanceController** - RESTful API for all operations
+
+#### Binance P2P Features
+- Create/Update/Delete P2P advertisements
+- Place and manage P2P orders
+- Payment confirmation flow
+- Crypto release mechanism
+- Dispute appeals
+- User/merchant info
+- Trade history
+- Real-time rates
+
+#### Binance B2B Features
+- Merchant account management
+- Payment links (QR codes)
+- Bulk payment processing
+- Settlement management
+- Withdrawal requests
+- Transaction history
+- Wallet balance
+- Webhook configuration
+
+#### Payment Gateways Added
+| Region | New Gateways |
+|--------|-------------|
+| Crypto | Binance |
+| Americas | BlueSnap, Chargify, PayU, EBANX, dLocal |
+| Asia Pacific | KakaoPay, NaverPay, Toss, dPay, RakutenPay, Merpay, 7-Eleven |
+| Europe | Giropay, Sofort, Przelewy24, Trustly, Multibanco, EPS |
+| Africa | Interswitch, Paga, VoguePay, OrangeMoney, MtnMobileMoney, AirtelAfrica, Masary |
+| Middle East | ArabBankPay, Checkout, HyperPay |
+| South Asia | AmazonPay, FreeCharge, Mobikwik, AirtelMoney, SimPay |
+
+### Testing
+- **153 Unit Tests**
+- **533 Assertions**
+- **38 Binance-specific tests**
+
+### Bug Fixes
+- Fixed PaymentResponse constructor signature issues
+- Fixed subscription response class paths
+- Fixed date/time helper compatibility
+
+---
+
 ## [1.0.0] - 2024-03-28
 
 ### 🎉 Major Release
