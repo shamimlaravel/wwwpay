@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\Bangladesh;
+namespace ShamimStack\WwwPay\Gateways\Bangladesh;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -258,11 +258,11 @@ class NagadGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         // Nagad doesn't natively support subscriptions through their standard API.
         // For recurring payments, merchants would need to implement custom solutions.
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'nagad',
             'gateway_subscription_id' => 'sub_nagad_' . uniqid(),
             'status' => 'active',

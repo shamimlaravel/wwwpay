@@ -1,9 +1,9 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Tests\Unit;
+namespace ShamimStack\WwwPay\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use ShamimStack\AllInOnePayment\Helpers\CurrencyConverter;
+use ShamimStack\WwwPay\Helpers\CurrencyConverter;
 
 class CurrencyConverterTest extends TestCase
 {

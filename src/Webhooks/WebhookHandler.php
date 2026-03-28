@@ -1,11 +1,11 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Webhooks;
+namespace ShamimStack\WwwPay\Webhooks;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Models\Transaction;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Models\Transaction;
 
 class WebhookHandler
 {

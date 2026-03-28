@@ -1,13 +1,13 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment;
+namespace ShamimStack\WwwPay;
 
 use Illuminate\Support\Collection;
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Contracts\Subscription;
-use ShamimStack\AllInOnePayment\Exceptions\InvalidConfigurationException;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Contracts\Subscription;
+use ShamimStack\WwwPay\Exceptions\InvalidConfigurationException;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -36,9 +36,9 @@ class PaymentManager
      * Get a gateway instance by name.
      *
      * @param  string  $gateway
-     * @return \ShamimStack\AllInOnePayment\Contracts\PaymentGateway
+     * @return \ShamimStack\WwwPay\Contracts\PaymentGateway
      *
-     * @throws \ShamimStack\AllInOnePayment\Exceptions\InvalidConfigurationException
+     * @throws \ShamimStack\WwwPay\Exceptions\InvalidConfigurationException
      */
     public function gateway(string $gateway): PaymentGateway
     {

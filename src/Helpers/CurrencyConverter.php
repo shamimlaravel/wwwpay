@@ -1,6 +1,6 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Helpers;
+namespace ShamimStack\WwwPay\Helpers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;

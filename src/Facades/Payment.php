@@ -1,11 +1,11 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Facades;
+namespace ShamimStack\WwwPay\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \ShamimStack\AllInOnePayment\PaymentManager
+ * @see \ShamimStack\WwwPay\PaymentManager
  */
 class Payment extends Facade
 {

@@ -1,34 +1,34 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Tests\Unit;
+namespace ShamimStack\WwwPay\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use ShamimStack\AllInOnePayment\Gateways\SouthAfrica\SnapScanGateway;
-use ShamimStack\AllInOnePayment\Gateways\China\WeChatPayGateway;
-use ShamimStack\AllInOnePayment\Gateways\Crypto\EthereumGateway;
-use ShamimStack\AllInOnePayment\Gateways\NorthAmerica\AuthorizeGateway;
-use ShamimStack\AllInOnePayment\Gateways\NorthAmerica\MonerisGateway;
-use ShamimStack\AllInOnePayment\Gateways\LatinAmerica\PagSeguroGateway;
-use ShamimStack\AllInOnePayment\Gateways\Europe\KlarnaGateway;
-use ShamimStack\AllInOnePayment\Gateways\Europe\SEPAGateway;
-use ShamimStack\AllInOnePayment\Gateways\Europe\iDEALGateway;
-use ShamimStack\AllInOnePayment\Gateways\Europe\BancontactGateway;
-use ShamimStack\AllInOnePayment\Gateways\AsiaPacific\PayPayGateway;
-use ShamimStack\AllInOnePayment\Gateways\AsiaPacific\LinePayGateway;
-use ShamimStack\AllInOnePayment\Gateways\AsiaPacific\GrabPayGateway;
-use ShamimStack\AllInOnePayment\Gateways\Africa\FlutterwaveGateway;
-use ShamimStack\AllInOnePayment\Gateways\India\PhonePeGateway;
-use ShamimStack\AllInOnePayment\Gateways\India\PaytmGateway;
-use ShamimStack\AllInOnePayment\Gateways\Bangladesh\NagadGateway;
-use ShamimStack\AllInOnePayment\Gateways\Pakistan\EasypaisaGateway;
-use ShamimStack\AllInOnePayment\Gateways\MiddleEast\PayTabsGateway;
-use ShamimStack\AllInOnePayment\Gateways\MiddleEast\TelrGateway;
+use ShamimStack\WwwPay\Gateways\SouthAfrica\SnapScanGateway;
+use ShamimStack\WwwPay\Gateways\China\WeChatPayGateway;
+use ShamimStack\WwwPay\Gateways\Crypto\EthereumGateway;
+use ShamimStack\WwwPay\Gateways\NorthAmerica\AuthorizeGateway;
+use ShamimStack\WwwPay\Gateways\NorthAmerica\MonerisGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\PagSeguroGateway;
+use ShamimStack\WwwPay\Gateways\Europe\KlarnaGateway;
+use ShamimStack\WwwPay\Gateways\Europe\SEPAGateway;
+use ShamimStack\WwwPay\Gateways\Europe\iDEALGateway;
+use ShamimStack\WwwPay\Gateways\Europe\BancontactGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\PayPayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\LinePayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\GrabPayGateway;
+use ShamimStack\WwwPay\Gateways\Africa\FlutterwaveGateway;
+use ShamimStack\WwwPay\Gateways\India\PhonePeGateway;
+use ShamimStack\WwwPay\Gateways\India\PaytmGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\NagadGateway;
+use ShamimStack\WwwPay\Gateways\Pakistan\EasypaisaGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\PayTabsGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\TelrGateway;
 
 class AllGatewaysTest extends TestCase
 {
     private function assertGatewayInterface($gateway)
     {
-        $this->assertInstanceOf(\ShamimStack\AllInOnePayment\Contracts\PaymentGateway::class, $gateway);
+        $this->assertInstanceOf(\ShamimStack\WwwPay\Contracts\PaymentGateway::class, $gateway);
     }
 
     private function assertGatewayMethods($gateway)
@@ -224,7 +224,7 @@ class AllGatewaysTest extends TestCase
             ]);
 
             $this->assertInstanceOf(
-                \ShamimStack\AllInOnePayment\Contracts\PaymentResponse::class,
+                \ShamimStack\WwwPay\Contracts\PaymentResponse::class,
                 $response,
                 get_class($gateway) . ' pay() should return PaymentResponse'
             );

@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\SouthAfrica;
+namespace ShamimStack\WwwPay\Gateways\SouthAfrica;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -260,7 +260,7 @@ class PayFastGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         // PayFast doesn't natively support subscriptions through a simple API.
         // For recurring payments, PayFast offers subscription products or you would need to:
@@ -268,7 +268,7 @@ class PayFastGateway implements PaymentGateway
         // 2. Use PayFast's subscription API if available
         // 3. Store customer payment details securely (PCI-DSS compliant)
         
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'payfast',
             'gateway_subscription_id' => 'sub_payfast_' . uniqid(),
             'status' => 'active',

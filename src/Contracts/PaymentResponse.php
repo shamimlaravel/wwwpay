@@ -1,6 +1,6 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Contracts;
+namespace ShamimStack\WwwPay\Contracts;
 
 class PaymentResponse
 {

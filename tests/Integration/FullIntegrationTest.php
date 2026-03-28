@@ -1,12 +1,12 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Tests\Integration;
+namespace ShamimStack\WwwPay\Tests\Integration;
 
-use ShamimStack\AllInOnePayment\Tests\TestCase;
-use ShamimStack\AllInOnePayment\Models\Transaction;
-use ShamimStack\AllInOnePayment\Models\Subscription;
-use ShamimStack\AllInOnePayment\B2B\B2BPayment;
-use ShamimStack\AllInOnePayment\P2P\P2PPayment;
+use ShamimStack\WwwPay\Tests\TestCase;
+use ShamimStack\WwwPay\Models\Transaction;
+use ShamimStack\WwwPay\Models\Subscription;
+use ShamimStack\WwwPay\B2B\B2BPayment;
+use ShamimStack\WwwPay\P2P\P2PPayment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FullIntegrationTest extends TestCase

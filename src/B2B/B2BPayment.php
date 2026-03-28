@@ -1,9 +1,9 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\B2B;
+namespace ShamimStack\WwwPay\B2B;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 

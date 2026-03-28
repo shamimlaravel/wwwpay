@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\NorthAmerica;
+namespace ShamimStack\WwwPay\Gateways\NorthAmerica;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Http;
 
 class SquareGateway implements PaymentGateway
@@ -258,7 +258,7 @@ class SquareGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         // Square doesn't natively support subscriptions through a simple API like card gateways.
         # For recurring payments, Square offers subscription products or you would need to:
@@ -266,7 +266,7 @@ class SquareGateway implements PaymentGateway
         # 2. Initiate new payments on schedule
         # 3. Handle failed payments and retries
         
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'square',
             'gateway_subscription_id' => 'sub_square_' . uniqid(),
             'status' => 'active',

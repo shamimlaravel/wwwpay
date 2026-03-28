@@ -1,12 +1,12 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Tests\Unit;
+namespace ShamimStack\WwwPay\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use ShamimStack\AllInOnePayment\PaymentManager;
+use ShamimStack\WwwPay\PaymentManager;
 use Illuminate\Foundation\Application;
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Exceptions\InvalidConfigurationException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Exceptions\InvalidConfigurationException;
 
 class PaymentManagerTest extends TestCase
 {

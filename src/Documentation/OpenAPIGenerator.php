@@ -1,6 +1,6 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Documentation;
+namespace ShamimStack\WwwPay\Documentation;
 
 use Illuminate\Support\Facades\URL;
 

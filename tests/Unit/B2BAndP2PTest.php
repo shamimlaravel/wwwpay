@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Tests\Unit;
+namespace ShamimStack\WwwPay\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use ShamimStack\AllInOnePayment\B2B\B2BPayment;
-use ShamimStack\AllInOnePayment\P2P\P2PPayment;
+use ShamimStack\WwwPay\B2B\B2BPayment;
+use ShamimStack\WwwPay\P2P\P2PPayment;
 
 class B2BAndP2PTest extends TestCase
 {

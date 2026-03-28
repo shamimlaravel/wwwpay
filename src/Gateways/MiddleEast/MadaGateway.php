@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\MiddleEast;
+namespace ShamimStack\WwwPay\Gateways\MiddleEast;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -274,7 +274,7 @@ class MadaGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         // Mada doesn't natively support subscriptions through their standard API.
         // For recurring payments, merchants would need to:
@@ -283,7 +283,7 @@ class MadaGateway implements PaymentGateway
         // 3. Handle expired cards and updates
         
         // We'll return a basic subscription model as a placeholder
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'mada',
             'gateway_subscription_id' => 'sub_mada_' . uniqid(),
             'status' => 'active',

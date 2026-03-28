@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\Crypto;
+namespace ShamimStack\WwwPay\Gateways\Crypto;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Http;
 
 class EthereumGateway implements PaymentGateway
@@ -190,7 +190,7 @@ class EthereumGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         # Ethereum doesn't natively support subscriptions through a standard API.
         # For recurring payments, merchants would need to:
@@ -198,7 +198,7 @@ class EthereumGateway implements PaymentGateway
         # 2. Monitor the blockchain for payments
         # 3. Handle expired payments and failed attempts
         
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'ethereum',
             'gateway_subscription_id' => 'sub_ethereum_' . uniqid(),
             'status' => 'active',

@@ -1,11 +1,11 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Tests\Integration;
+namespace ShamimStack\WwwPay\Tests\Integration;
 
-use ShamimStack\AllInOnePayment\Tests\TestCase;
-use ShamimStack\AllInOnePayment\PaymentManager;
-use ShamimStack\AllInOnePayment\Models\Transaction;
-use ShamimStack\AllInOnePayment\Models\Subscription;
+use ShamimStack\WwwPay\Tests\TestCase;
+use ShamimStack\WwwPay\PaymentManager;
+use ShamimStack\WwwPay\Models\Transaction;
+use ShamimStack\WwwPay\Models\Subscription;
 
 class PaymentManagerIntegrationTest extends TestCase
 {
@@ -20,13 +20,13 @@ class PaymentManagerIntegrationTest extends TestCase
         $manager = $this->app->make(PaymentManager::class);
         
         $gateway = $manager->gateway('stripe');
-        $this->assertInstanceOf(\ShamimStack\AllInOnePayment\Contracts\PaymentGateway::class, $gateway);
+        $this->assertInstanceOf(\ShamimStack\WwwPay\Contracts\PaymentGateway::class, $gateway);
         $this->assertEquals('stripe', $gateway->getName());
     }
 
     public function test_throws_exception_for_unknown_gateway()
     {
-        $this->expectException(\ShamimStack\AllInOnePayment\Exceptions\InvalidConfigurationException::class);
+        $this->expectException(\ShamimStack\WwwPay\Exceptions\InvalidConfigurationException::class);
         
         $manager = $this->app->make(PaymentManager::class);
         $manager->gateway('nonexistent');

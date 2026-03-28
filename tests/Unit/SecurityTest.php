@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Tests\Unit;
+namespace ShamimStack\WwwPay\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use ShamimStack\AllInOnePayment\Security\PciCompliance;
-use ShamimStack\AllInOnePayment\Security\FraudDetection;
+use ShamimStack\WwwPay\Security\PciCompliance;
+use ShamimStack\WwwPay\Security\FraudDetection;
 
 class SecurityTest extends TestCase
 {
