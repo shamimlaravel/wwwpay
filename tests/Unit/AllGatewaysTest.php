@@ -3,26 +3,39 @@
 namespace ShamimStack\WwwPay\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use ShamimStack\WwwPay\Gateways\Global\StripeGateway;
+use ShamimStack\WwwPay\Gateways\Global\PayPalGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\BkashGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\NagadGateway;
+use ShamimStack\WwwPay\Gateways\India\UpiGateway;
+use ShamimStack\WwwPay\Gateways\India\PhonePeGateway;
+use ShamimStack\WwwPay\Gateways\India\PaytmGateway;
+use ShamimStack\WwwPay\Gateways\Pakistan\JazzCashGateway;
+use ShamimStack\WwwPay\Gateways\Pakistan\EasypaisaGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\PayTabsGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\TelrGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\MadaGateway;
+use ShamimStack\WwwPay\Gateways\SouthAfrica\PayFastGateway;
 use ShamimStack\WwwPay\Gateways\SouthAfrica\SnapScanGateway;
+use ShamimStack\WwwPay\Gateways\China\AlipayGateway;
 use ShamimStack\WwwPay\Gateways\China\WeChatPayGateway;
+use ShamimStack\WwwPay\Gateways\Crypto\BitcoinGateway;
 use ShamimStack\WwwPay\Gateways\Crypto\EthereumGateway;
+use ShamimStack\WwwPay\Gateways\NorthAmerica\SquareGateway;
 use ShamimStack\WwwPay\Gateways\NorthAmerica\AuthorizeGateway;
 use ShamimStack\WwwPay\Gateways\NorthAmerica\MonerisGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\MercadoPagoGateway;
 use ShamimStack\WwwPay\Gateways\LatinAmerica\PagSeguroGateway;
 use ShamimStack\WwwPay\Gateways\Europe\KlarnaGateway;
 use ShamimStack\WwwPay\Gateways\Europe\SEPAGateway;
+use ShamimStack\WwwPay\Gateways\Europe\AdyenGateway;
 use ShamimStack\WwwPay\Gateways\Europe\iDEALGateway;
 use ShamimStack\WwwPay\Gateways\Europe\BancontactGateway;
 use ShamimStack\WwwPay\Gateways\AsiaPacific\PayPayGateway;
 use ShamimStack\WwwPay\Gateways\AsiaPacific\LinePayGateway;
 use ShamimStack\WwwPay\Gateways\AsiaPacific\GrabPayGateway;
 use ShamimStack\WwwPay\Gateways\Africa\FlutterwaveGateway;
-use ShamimStack\WwwPay\Gateways\India\PhonePeGateway;
-use ShamimStack\WwwPay\Gateways\India\PaytmGateway;
-use ShamimStack\WwwPay\Gateways\Bangladesh\NagadGateway;
-use ShamimStack\WwwPay\Gateways\Pakistan\EasypaisaGateway;
-use ShamimStack\WwwPay\Gateways\MiddleEast\PayTabsGateway;
-use ShamimStack\WwwPay\Gateways\MiddleEast\TelrGateway;
+use ShamimStack\WwwPay\Gateways\Africa\PaystackGateway;
 
 class AllGatewaysTest extends TestCase
 {
