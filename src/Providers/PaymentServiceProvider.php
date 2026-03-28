@@ -80,6 +80,7 @@ use ShamimStack\WwwPay\Gateways\Crypto\USDTGateway;
 use ShamimStack\WwwPay\Gateways\Crypto\USDCGateway;
 use ShamimStack\WwwPay\Gateways\Crypto\LitecoinGateway;
 use ShamimStack\WwwPay\Gateways\Crypto\RippleGateway;
+use ShamimStack\WwwPay\Gateways\Crypto\BinanceGateway;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -381,6 +382,10 @@ class PaymentServiceProvider extends ServiceProvider
 
         $this->app->singleton('payment.ripple', function ($app) {
             return new RippleGateway($app['config']->get('payment.gateways.ripple'));
+        });
+
+        $this->app->singleton('payment.binance', function ($app) {
+            return new BinanceGateway($app['config']->get('payment.gateways.binance'));
         });
     }
 

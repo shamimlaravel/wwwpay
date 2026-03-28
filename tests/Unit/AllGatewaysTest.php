@@ -36,6 +36,7 @@ use ShamimStack\WwwPay\Gateways\AsiaPacific\LinePayGateway;
 use ShamimStack\WwwPay\Gateways\AsiaPacific\GrabPayGateway;
 use ShamimStack\WwwPay\Gateways\Africa\FlutterwaveGateway;
 use ShamimStack\WwwPay\Gateways\Africa\PaystackGateway;
+use ShamimStack\WwwPay\Gateways\Crypto\BinanceGateway;
 
 class AllGatewaysTest extends TestCase
 {
@@ -215,6 +216,15 @@ class AllGatewaysTest extends TestCase
         $this->assertEquals('telr', $gateway->getName());
     }
 
+    public function test_binance_gateway()
+    {
+        $gateway = new BinanceGateway([]);
+        $this->assertGatewayInterface($gateway);
+        $this->assertGatewayMethods($gateway);
+        $this->assertEquals('Binance', $gateway->getName());
+        $this->assertTrue($gateway->supportsSubscriptions());
+    }
+
     public function test_all_gateways_have_subscribe_method(): void
     {
         $gateways = [
@@ -251,6 +261,7 @@ class AllGatewaysTest extends TestCase
             new GrabPayGateway([]),
             new FlutterwaveGateway([]),
             new PaystackGateway([]),
+            new BinanceGateway([]),
         ];
 
         foreach ($gateways as $gateway) {
