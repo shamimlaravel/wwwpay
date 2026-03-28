@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.3] - 2026-03-29
+
+### 🚀 Major Release - 165 Payment Gateways
+
+#### New Features
+- **39 New Regional Gateways** added
+- **Indonesia**: Doku, OY, CIMB
+- **Vietnam**: OnePay, Vimo
+- **Thailand**: Rabbit
+- **Africa**: Yoco, PayDunya, TouchPay, Wari, WaveCIMA, SafaricomMpesa
+- **MENA**: KNet (Kuwait)
+- **Europe**: Paysafecard, Qiwi, YooKassa, Sberbank
+- **Americas**: Clover, Adyen Test, EBANX Local
+- **Global**: Skrill, Neteller, AstroPay, Rapyd, Payeer, Paxum, SticPay
+- **South Asia**: Juspay, Cashfree, Razorpay, Instamojo, PayUmoney
+- **Asia Pacific**: PayLah (Singapore), PayPay JP, Stripe JP
+
+#### Previous Gateways Included
+- **Bangladesh (14)**: bKash, Nagad, Rocket, Upay, ShurjoPay, SSLCommerz, AamarPay, Pathao, CashBaba, QPay, FastPay, BangoPay, FlexPay, OnePay
+- **Indonesia (9)**: GoPay, OVO, DANA, LinkAja, Midtrans, Xendit, Doku, OY, CIMB
+- **Vietnam (6)**: MoMo, ZaloPay, VNPay, ViettelPay, OnePay, Vimo
+- **Thailand (5)**: TrueMoney, 2C2P, Omise, Rabbit, 7-Eleven
+- **Philippines (3)**: GCash, Maya, Dragonpay
+- **Malaysia (3)**: Touch'n Go, Boost, iPay88
+- **Singapore (3)**: PayNow, NETS, PayLah
+- **Myanmar (1)**: WavePay
+- **Cambodia (1)**: Wing
+- **Brazil (3)**: PIX, Boleto, PicPay
+- **Mexico (3)**: OXXO, SPEI, Conekta
+- **Latin America (4)**: MercadoPago AR, PSE, WebPay, Culqi
+- **MENA (12)**: PayTabs, Telr, Mada, ArabBankPay, Checkout, HyperPay, Fawry, Tabby, Tamara, STC Pay, KNet, PayFort
+- **Africa (18)**: Flutterwave, Paystack, PayFast, SnapScan, M-Pesa, SafaricomMpesa, Yoco, PayDunya, TouchPay, Wari, WaveCIMA, Interswitch, Paga, VoguePay, OrangeMoney, MtnMobileMoney, AirtelAfrica, Masary
+- **Europe (14)**: Klarna, Adyen, iDEAL, Bancontact, SEPA, Giropay, Sofort, Przelewy24, Trustly, Multibanco, EPS, Payguard, Paysafecard, Qiwi, YooKassa, Sberbank
+- **Americas (13)**: Square, Authorize.net, Moneris, MercadoPago, PagSeguro, BlueSnap, Chargify, PayU, EBANX, dLocal, Clover, Adyen Test, EBANX Local
+- **Asia Pacific (16)**: Alipay, WeChat Pay, PayPay, Line Pay, GrabPay, KakaoPay, NaverPay, Toss, dPay, RakutenPay, Merpay, PayPay JP, Stripe JP, PayLah
+- **South Asia (10)**: UPI, PhonePe, Paytm, AmazonPay, FreeCharge, Mobikwik, AirtelMoney, SimPay, Juspay, Cashfree, Razorpay, Instamojo, PayUmoney
+- **Global (12)**: Stripe, PayPal, ApplePay, GooglePay, SamsungPay, Afterpay, Affirm, Wise, Payoneer, Skrill, Neteller, AstroPay, Rapyd, Payeer, Paxum, SticPay
+- **Crypto (7)**: Bitcoin, Ethereum, USDT, USDC, Litecoin, Ripple, Binance
+
+---
+
 ## [1.0.2] - 2026-03-29
 
 ### 🎉 Major Release - Binance P2P & B2B Integration

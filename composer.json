@@ -1,6 +1,6 @@
 {
     "name": "shamimstack/wwwpay",
-    "description": "All-in-one payment gateway package for Laravel - 33+ global, crypto, and regional payment methods",
+    "description": "All-in-one payment gateway package for Laravel - 165 global, crypto, and regional payment methods",
     "keywords": [
         "laravel",
         "payment",
