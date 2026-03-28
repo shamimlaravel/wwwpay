@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\Pakistan;
+namespace ShamimStack\WwwPay\Gateways\Pakistan;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -251,11 +251,11 @@ class EasypaisaGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         // Easypaisa doesn't natively support subscriptions through their standard API.
         // For recurring payments, merchants would need to implement custom solutions.
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'easypaisa',
             'gateway_subscription_id' => 'sub_easypaisa_' . uniqid(),
             'status' => 'active',

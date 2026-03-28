@@ -1,8 +1,8 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Reporting;
+namespace ShamimStack\WwwPay\Reporting;
 
-use ShamimStack\AllInOnePayment\Models\Transaction;
+use ShamimStack\WwwPay\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;

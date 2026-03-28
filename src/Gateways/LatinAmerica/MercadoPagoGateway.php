@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\LatinAmerica;
+namespace ShamimStack\WwwPay\Gateways\LatinAmerica;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Http;
 
 class MercadoPagoGateway implements PaymentGateway
@@ -214,9 +214,9 @@ class MercadoPagoGateway implements PaymentGateway
         }
     }
 
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'mercadopago',
             'gateway_subscription_id' => 'sub_mp_' . uniqid(),
             'status' => 'active',

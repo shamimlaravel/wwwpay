@@ -1,6 +1,6 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Contracts;
+namespace ShamimStack\WwwPay\Contracts;
 
 use Illuminate\Http\Request;
 

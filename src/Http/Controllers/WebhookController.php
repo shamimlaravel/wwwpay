@@ -1,11 +1,11 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Http\Controllers;
+namespace ShamimStack\WwwPay\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use ShamimStack\AllInOnePayment\PaymentManager;
-use ShamimStack\AllInOnePayment\Models\Transaction;
+use ShamimStack\WwwPay\PaymentManager;
+use ShamimStack\WwwPay\Models\Transaction;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Crypt;
 

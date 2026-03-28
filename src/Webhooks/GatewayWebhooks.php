@@ -1,9 +1,9 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Webhooks;
+namespace ShamimStack\WwwPay\Webhooks;
 
 use Illuminate\Http\Request;
-use ShamimStack\AllInOnePayment\Models\Transaction;
+use ShamimStack\WwwPay\Models\Transaction;
 use Illuminate\Support\Facades\Log;
 
 trait GatewayWebhooks

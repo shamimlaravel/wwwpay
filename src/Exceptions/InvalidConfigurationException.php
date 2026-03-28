@@ -1,6 +1,6 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Exceptions;
+namespace ShamimStack\WwwPay\Exceptions;
 
 use Exception;
 

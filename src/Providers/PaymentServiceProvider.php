@@ -3,6 +3,13 @@
 namespace ShamimStack\WwwPay\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use ShamimStack\WwwPay\Events\PaymentEvent;
+use ShamimStack\WwwPay\Events\PaymentSuccessful;
+use ShamimStack\WwwPay\Events\PaymentFailed;
+use ShamimStack\WwwPay\Events\RefundProcessed;
+use ShamimStack\WwwPay\Events\SubscriptionCreated;
+use ShamimStack\WwwPay\Events\SubscriptionCancelled;
+use ShamimStack\WwwPay\Events\WebhookReceived;
 use ShamimStack\WwwPay\Gateways\Global\StripeGateway;
 use ShamimStack\WwwPay\Gateways\Global\PayPalGateway;
 use ShamimStack\WwwPay\Gateways\Bangladesh\BkashGateway;
@@ -199,6 +206,9 @@ class PaymentServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Register event listeners
+        $this->registerEvents();
+
         // Publish config files
         $this->publishes([
             __DIR__.'/../Config/payment.php' => config_path('payment.php'),
@@ -206,12 +216,36 @@ class PaymentServiceProvider extends ServiceProvider
 
         // Publish migrations
         $this->publishes([
-            __DIR__.'/../Migrations/' => database_path('migrations'),
+            dirname(__DIR__).'/../database/migrations/' => database_path('migrations'),
         ], 'payment-migrations');
 
         // Publish views (if any)
         $this->publishes([
             __DIR__.'/../Resources/views' => resource_path('views/vendor/payment'),
         ], 'payment-views');
+    }
+
+    /**
+     * Register payment events.
+     *
+     * @return void
+     */
+    protected function registerEvents(): void
+    {
+        $events = [
+            PaymentSuccessful::class,
+            PaymentFailed::class,
+            RefundProcessed::class,
+            SubscriptionCreated::class,
+            SubscriptionCancelled::class,
+            WebhookReceived::class,
+        ];
+
+        foreach ($events as $event) {
+            $this->app['events']->listen($event, function ($e) {
+                // Default listeners can be registered here
+                // Users can override in their EventServiceProvider
+            });
+        }
     }
 }

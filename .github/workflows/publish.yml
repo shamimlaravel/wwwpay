@@ -1,0 +1,22 @@
+name: Publish to Packagist
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish to Packagist
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Publish to Packagist
+        uses: restPoints/packagist-action@main
+        with:
+          api_token: ${{ secrets.PACKAGIST_API_TOKEN }}
+          api_url: https://packagist.org
+          repo_url: ${{ github.repository_url }}

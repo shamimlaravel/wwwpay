@@ -1,11 +1,16 @@
-# WwwPay - Laravel All-In-One Payment Gateway
+# WwwPay - All-in-One Payment Gateway for Laravel
 
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-8.1+-blue.svg" alt="PHP">
   <img src="https://img.shields.io/badge/Laravel-9+-red.svg" alt="Laravel">
-  <img src="https://img.shields.io/badge/Package-wwwpay-green.svg" alt="Package">
   <img src="https://img.shields.io/badge/Gateways-33+-orange.svg" alt="Gateways">
   <img src="https://img.shields.io/badge/Tests-89%20passing-brightgreen.svg" alt="Tests">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
+</p>
+
+<p align="center">
+  <a href="https://github.com/shamimlaravel/wwwpay/actions"><img src="https://github.com/shamimlaravel/wwwpay/workflows/Tests/badge.svg" alt="Build Status"></a>
+  <a href="https://packagist.org/packages/shamimstack/wwwpay"><img src="https://img.shields.io/packagist/v/shamimstack/wwwpay.svg" alt="Packagist"></a>
 </p>
 
 > All-in-one payment gateway package for Laravel with 33+ global, crypto, and regional payment methods in a single unified API.
@@ -20,6 +25,10 @@
 - **Subscription Management** - Recurring billing support
 - **Security Features** - Fraud detection, PCI compliance
 - **Interactive CLI** - Easy installation and configuration
+- **REST API** - Ready-to-use API controllers
+- **Events System** - Laravel event-driven architecture
+- **Middleware** - Security and webhook verification
+- **Traits** - HasPayments, HasSubscriptions, HandlesCurrency
 
 ## Supported Gateways
 
@@ -64,236 +73,137 @@ composer require shamimstack/wwwpay
 php artisan payment:install
 ```
 
-This wizard will help you:
-- Select payment gateways by region
-- Configure environment variables
-- Publish configuration files
-- Setup database migrations
-
-### 2. Manual Configuration
-
-```bash
-# Publish config
-php artisan vendor:publish --provider="ShamimStack\WwwPay\Providers\PaymentServiceProvider"
-
-# Run migrations
-php artisan migrate
-```
-
-### 3. Configure .env
+### 2. Configure .env
 
 ```env
-# Default Gateway
 PAYMENT_DEFAULT_GATEWAY=stripe
-
-# Stripe
 STRIPE_KEY=your_key
 STRIPE_SECRET=your_secret
-STRIPE_WEBHOOK_SECRET=your_webhook_secret
-
-# PayPal
-PAYPAL_CLIENT_ID=your_client_id
-PAYPAL_CLIENT_SECRET=your_client_secret
 ```
 
-## Usage
-
-### Basic Payment
+### 3. Make Payment
 
 ```php
 use ShamimStack\WwwPay\Facades\Payment;
 
-// With default gateway
 $response = Payment::pay([
     'amount' => 100.00,
     'currency' => 'USD',
     'return_url' => url('/payment/success'),
 ]);
 
-// With specific gateway
-$response = Payment::gateway('paystack')->pay([
-    'amount' => 10000.00,
-    'currency' => 'NGN',
-    'email' => 'customer@example.com',
-]);
-
-if ($response->isSuccessful()) {
-    $transactionId = $response->getTransactionId();
+if ($response->isRedirect()) {
+    return redirect($response->getRedirectUrl());
 }
 ```
 
-### Refunds
+## Usage Examples
 
+### Payments
 ```php
-// Full refund
-$response = Payment::gateway('stripe')->refund($transactionId);
+// Default gateway
+Payment::pay(['amount' => 100, 'currency' => 'USD']);
 
-// Partial refund
-$response = Payment::gateway('stripe')->refund($transactionId, 50.00);
+// Specific gateway
+Payment::gateway('paystack')->pay([
+    'amount' => 50000,
+    'currency' => 'NGN',
+    'email' => 'customer@example.com',
+]);
 ```
 
 ### Subscriptions
-
 ```php
 $subscription = Payment::gateway('stripe')->subscribe([
-    'plan_id' => 'gold_plan',
-    'customer_id' => 'customer_123',
+    'plan_id' => 'price_monthly',
+    'customer_email' => 'user@example.com',
 ]);
 ```
 
 ### B2B Payments
-
 ```php
 use ShamimStack\WwwPay\B2B\B2BPayment;
 
-// Create invoice
 $invoice = B2BPayment::createInvoice([
     'amount' => 1000.00,
     'currency' => 'USD',
     'client_name' => 'Acme Corp',
     'client_email' => 'billing@acme.com',
 ]);
-
-// Wire transfer
-$transfer = B2BPayment::wireTransfer([
-    'amount' => 5000.00,
-    'currency' => 'EUR',
-    'iban' => 'DE89370400440532013000',
-    'bic' => 'COBADEFFXXX',
-]);
 ```
 
 ### P2P Payments
-
 ```php
 use ShamimStack\WwwPay\P2P\P2PPayment;
 
-// Send money
 $transfer = P2PPayment::sendMoney([
     'amount' => 100.00,
     'currency' => 'USD',
     'recipient_id' => 'user_456',
 ]);
-
-// Split payment
-$split = P2PPayment::splitPayment([
-    'total_amount' => 300.00,
-    'participants' => ['user_1', 'user_2', 'user_3'],
-]);
-
-// Escrow
-$escrow = P2PPayment::escrow([
-    'amount' => 500.00,
-    'currency' => 'USD',
-    'released_to' => 'user_seller',
-]);
 ```
 
 ## CLI Commands
 
-### payment:install
-Interactive installer for setting up gateways.
-
-```bash
-php artisan payment:install
-php artisan payment:install --gateway=stripe
-php artisan payment:install --region=south_asia
-```
-
-### payment:gateway:list
-List all available gateways.
-
-```bash
-php artisan payment:gateway:list
-php artisan payment:gateway:list --region=africa
-php artisan payment:gateway:list --json
-```
-
-### payment:gateway:test
-Test a specific gateway connection.
-
-```bash
-php artisan payment:gateway:test stripe
-php artisan payment:gateway:test paystack --amount=1000 --currency=NGN
-```
-
-### payment:webhook:setup
-Setup webhook routes for gateways.
-
-```bash
-php artisan payment:webhook:setup
-php artisan payment:webhook:setup --gateway=stripe
-php artisan payment:webhook:setup --all
-```
-
-### payment:demo
-Generate demo pages.
-
-```bash
-php artisan payment:demo
-php artisan payment:demo store
-php artisan payment:demo subscription
-php artisan payment:demo p2p
-php artisan payment:demo b2b
-```
+| Command | Description |
+|---------|-------------|
+| `payment:install` | Interactive setup wizard |
+| `payment:list` | List all gateways |
+| `payment:test stripe` | Test gateway connection |
+| `payment:webhook` | Setup webhooks |
+| `payment:demo` | Generate demo pages |
 
 ## Blade Components
 
-The package includes reusable Blade components:
-
 ```blade
-{{-- Payment Checkout Form --}}
-<x-payment::checkout-form :amount="100" :currency="'USD'" :gateways="$gateways" />
-
-{{-- Gateway Selector --}}
-<x-payment::gateway-selector :gateways="$gateways" />
-
-{{-- Credit Card Form --}}
+<x-payment::checkout-form :amount="100" :currency="'USD'" />
 <x-payment::card-form />
-
-{{-- Status Badge --}}
 <x-payment::status-badge :status="$transaction->status" />
-
-{{-- Transaction Table --}}
-<x-payment::transaction-table :transactions="$transactions" />
 ```
 
-## Database Schema
-
-The package uses two main tables:
-
-### payment_transactions
-| Column | Type | Description |
-|--------|------|-------------|
-| id | uuid | Primary key |
-| gateway | string | Payment gateway name |
-| type | string | payment/refund |
-| amount | decimal | Transaction amount |
-| currency | string | Currency code |
-| status | string | pending/success/failed |
-| transaction_id | string | External transaction ID |
-| metadata | json | Additional data |
-
-### payment_subscriptions
-| Column | Type | Description |
-|--------|------|-------------|
-| id | uuid | Primary key |
-| gateway | string | Payment gateway |
-| plan_id | string | Subscription plan ID |
-| customer_id | string | Customer identifier |
-| status | string | active/cancelled/expired |
-| started_at | timestamp | Start date |
-| ends_at | timestamp | End date |
-
-## Webhooks
-
-Setup webhook routes in `routes/web.php`:
+## Traits
 
 ```php
-use ShamimStack\WwwPay\Http\Controllers\WebhookController;
+use ShamimStack\WwwPay\Traits\HasPayments;
+use ShamimStack\WwwPay\Traits\HasSubscriptions;
 
+class User extends Model
+{
+    use HasPayments, HasSubscriptions;
+}
+
+// Now you can:
+$user->processPayment(['amount' => 100, 'currency' => 'USD']);
+$user->subscribe('price_monthly');
+$user->totalSpent();
+```
+
+## Middleware
+
+```php
+// routes/web.php
 Route::post('/webhook/{gateway}', [WebhookController::class, 'handle'])
-    ->name('payment.webhook');
+    ->middleware('verify.payment.security');
+```
+
+## API Routes
+
+```php
+// In your routes/api.php
+require 'vendor/shamimstack/wwwpay/routes/payment-api.php';
+```
+
+## Documentation
+
+- [Installation Guide](docs/implementation.md)
+- [API Reference](docs/api-reference.md)
+- [Quick Start](docs/quickstart.md)
+- [Gateway Docs](docs/gateways/)
+
+## Testing
+
+```bash
+./vendor/bin/phpunit
 ```
 
 ## Requirements
@@ -302,23 +212,9 @@ Route::post('/webhook/{gateway}', [WebhookController::class, 'handle'])
 - Laravel 9.0+
 - Extensions: bcmath, json
 
-## Testing
-
-```bash
-vendor/bin/phpunit
-```
-
-## Security
-
-- Store API keys securely in `.env`
-- Validate all input data
-- Use HTTPS in production
-- Follow PCI DSS guidelines
-- Regularly update the package
-
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please submit a Pull Request.
 
 ## License
 
@@ -326,4 +222,4 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Author
 
-**shamimstack**
+**Shamim Hassan** - [shamimlaravel](https://github.com/shamimlaravel)

@@ -1,6 +1,6 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Security;
+namespace ShamimStack\WwwPay\Security;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;

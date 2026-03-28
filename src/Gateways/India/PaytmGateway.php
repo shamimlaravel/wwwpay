@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\India;
+namespace ShamimStack\WwwPay\Gateways\India;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -233,7 +233,7 @@ class PaytmGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         // Paytm doesn't natively support subscriptions through a simple API like card gateways.
         // For recurring payments, Paytm offers specific subscription products or you would need to:
@@ -241,7 +241,7 @@ class PaytmGateway implements PaymentGateway
         // 2. Initiate new payments on schedule
         // 3. Handle failed payments and retries
         
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'paytm',
             'gateway_subscription_id' => 'sub_paytm_' . uniqid(),
             'status' => 'active',

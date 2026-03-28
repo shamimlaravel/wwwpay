@@ -1,12 +1,12 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Tests;
+namespace ShamimStack\WwwPay\Tests;
 
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
-use ShamimStack\AllInOnePayment\Providers\PaymentServiceProvider;
-use ShamimStack\AllInOnePayment\PaymentManager;
-use ShamimStack\AllInOnePayment\Models\Transaction;
-use ShamimStack\AllInOnePayment\Models\Subscription;
+use ShamimStack\WwwPay\Providers\PaymentServiceProvider;
+use ShamimStack\WwwPay\PaymentManager;
+use ShamimStack\WwwPay\Models\Transaction;
+use ShamimStack\WwwPay\Models\Subscription;
 
 abstract class TestCase extends OrchestraTestCase
 {
@@ -20,7 +20,7 @@ abstract class TestCase extends OrchestraTestCase
     protected function getPackageAliases($app)
     {
         return [
-            'Payment' => \ShamimStack\AllInOnePayment\Facades\Payment::class,
+            'Payment' => \ShamimStack\WwwPay\Facades\Payment::class,
         ];
     }
 

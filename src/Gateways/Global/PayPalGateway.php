@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\Global;
+namespace ShamimStack\WwwPay\Gateways\Global;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Payment;
@@ -205,7 +205,7 @@ class PayPalGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         // This is a placeholder. In a real implementation, you would:
         // 1. Create a billing plan
@@ -213,7 +213,7 @@ class PayPalGateway implements PaymentGateway
         // 3. Create a billing agreement
         // 4. Execute the agreement
         // For now, we return a basic subscription model.
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'paypal',
             'gateway_subscription_id' => 'sub_' . uniqid(),
             'status' => 'active',

@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Models;
+namespace ShamimStack\WwwPay\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
-use ShamimStack\AllInOnePayment\Contracts\Subscription as SubscriptionContract;
+use ShamimStack\WwwPay\Contracts\Subscription as SubscriptionContract;
 
 class Subscription extends Model implements SubscriptionContract
 {

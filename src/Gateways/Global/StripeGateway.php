@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\Global;
+namespace ShamimStack\WwwPay\Gateways\Global;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Stripe\Exception\ApiErrorException;
@@ -198,11 +198,11 @@ class StripeGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         // For simplicity, we return a basic subscription model.
         // In a real implementation, you would create a subscription in Stripe and return a model.
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'stripe',
             'gateway_subscription_id' => 'sub_' . uniqid(),
             'status' => 'active',

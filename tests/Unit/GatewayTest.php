@@ -1,22 +1,22 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Tests\Unit;
+namespace ShamimStack\WwwPay\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use ShamimStack\AllInOnePayment\Gateways\Global\StripeGateway;
-use ShamimStack\AllInOnePayment\Gateways\Global\PayPalGateway;
-use ShamimStack\AllInOnePayment\Gateways\Bangladesh\BkashGateway;
-use ShamimStack\AllInOnePayment\Gateways\India\UpiGateway;
-use ShamimStack\AllInOnePayment\Gateways\Pakistan\JazzCashGateway;
-use ShamimStack\AllInOnePayment\Gateways\MiddleEast\MadaGateway;
-use ShamimStack\AllInOnePayment\Gateways\SouthAfrica\PayFastGateway;
-use ShamimStack\AllInOnePayment\Gateways\China\AlipayGateway;
-use ShamimStack\AllInOnePayment\Gateways\Crypto\BitcoinGateway;
-use ShamimStack\AllInOnePayment\Gateways\NorthAmerica\SquareGateway;
-use ShamimStack\AllInOnePayment\Gateways\LatinAmerica\MercadoPagoGateway;
-use ShamimStack\AllInOnePayment\Gateways\Europe\AdyenGateway;
-use ShamimStack\AllInOnePayment\Gateways\Africa\PaystackGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Gateways\Global\StripeGateway;
+use ShamimStack\WwwPay\Gateways\Global\PayPalGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\BkashGateway;
+use ShamimStack\WwwPay\Gateways\India\UpiGateway;
+use ShamimStack\WwwPay\Gateways\Pakistan\JazzCashGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\MadaGateway;
+use ShamimStack\WwwPay\Gateways\SouthAfrica\PayFastGateway;
+use ShamimStack\WwwPay\Gateways\China\AlipayGateway;
+use ShamimStack\WwwPay\Gateways\Crypto\BitcoinGateway;
+use ShamimStack\WwwPay\Gateways\NorthAmerica\SquareGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\MercadoPagoGateway;
+use ShamimStack\WwwPay\Gateways\Europe\AdyenGateway;
+use ShamimStack\WwwPay\Gateways\Africa\PaystackGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
 
 class GatewayTest extends TestCase
 {
@@ -135,7 +135,7 @@ class GatewayTest extends TestCase
 
         foreach ($gateways as $gateway) {
             $this->assertInstanceOf(
-                \ShamimStack\AllInOnePayment\Contracts\PaymentGateway::class,
+                \ShamimStack\WwwPay\Contracts\PaymentGateway::class,
                 $gateway,
                 get_class($gateway) . ' does not implement PaymentGateway interface'
             );
@@ -188,8 +188,15 @@ class GatewayTest extends TestCase
         $this->assertInstanceOf(PaymentResponse::class, $response);
     }
 
+    public function test_gateway_has_subscribe_method(): void
+    {
+        $gateway = new StripeGateway([]);
+        
+        $this->assertTrue(method_exists($gateway, 'subscribe'));
+    }
+    
     public function test_gateway_subscribe_returns_subscription_instance()
     {
-        $this->markTestSkipped('Subscription tests require Laravel application context. Use Integration tests instead.');
+        $this->markTestSkipped('Subscription tests require Laravel application context with database connection.');
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace ShamimStack\AllInOnePayment\Gateways\SouthAfrica;
+namespace ShamimStack\WwwPay\Gateways\SouthAfrica;
 
-use ShamimStack\AllInOnePayment\Contracts\PaymentGateway;
-use ShamimStack\AllInOnePayment\Contracts\PaymentResponse;
-use ShamimStack\AllInOnePayment\Exceptions\PaymentException;
+use ShamimStack\WwwPay\Contracts\PaymentGateway;
+use ShamimStack\WwwPay\Contracts\PaymentResponse;
+use ShamimStack\WwwPay\Exceptions\PaymentException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -184,11 +184,11 @@ class SnapScanGateway implements PaymentGateway
      * @param array $data Subscription data
      * @return Subscription
      */
-    public function subscribe(array $data): \ShamimStack\AllInOnePayment\Models\Subscription
+    public function subscribe(array $data): \ShamimStack\WwwPay\Models\Subscription
     {
         // SnapScan doesn't natively support subscriptions through their standard API.
         # For recurring payments, merchants would need to implement custom solutions.
-        return new \ShamimStack\AllInOnePayment\Models\Subscription([
+        return new \ShamimStack\WwwPay\Models\Subscription([
             'gateway' => 'snapscan',
             'gateway_subscription_id' => 'sub_snapscan_' . uniqid(),
             'status' => 'active',
