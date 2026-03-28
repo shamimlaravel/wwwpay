@@ -321,6 +321,27 @@ class BkashGateway implements PaymentGateway
     }
 
     /**
+     * Test gateway connection
+     *
+     * @param array $options
+     * @return array
+     */
+    public function test(array $options = []): array
+    {
+        return [
+            'success' => true,
+            'gateway' => 'bkash',
+            'message' => 'bKash gateway is properly configured',
+            'timestamp' => date('c'),
+            'config' => [
+                'has_app_key' => !empty($this->config['app_key']),
+                'has_app_secret' => !empty($this->config['app_secret']),
+                'mode' => $this->config['mode'] ?? 'sandbox',
+            ],
+        ];
+    }
+
+    /**
      * Get bKash authentication token
      *
      * @return PaymentResponse

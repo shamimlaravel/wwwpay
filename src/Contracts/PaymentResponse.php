@@ -113,4 +113,54 @@ class PaymentResponse
     {
         return $this->data;
     }
+
+    /**
+     * Get redirect URL if applicable
+     *
+     * @return string|null
+     */
+    public function getRedirectUrl(): ?string
+    {
+        return $this->data['redirect_url'] ?? $this->data['payment_url'] ?? null;
+    }
+
+    /**
+     * Check if this is a redirect response
+     *
+     * @return bool
+     */
+    public function isRedirect(): bool
+    {
+        return !empty($this->getRedirectUrl());
+    }
+
+    /**
+     * Check if the payment is pending
+     *
+     * @return bool
+     */
+    public function isPending(): bool
+    {
+        $status = $this->data['status'] ?? '';
+        return strtoupper($status) === 'PENDING' || strtoupper($status) === 'PROCESSING';
+    }
+
+    /**
+     * Convert response to array
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'success' => $this->success,
+            'transaction_id' => $this->transactionId,
+            'gateway_transaction_id' => $this->gatewayTransactionId,
+            'error_message' => $this->errorMessage,
+            'data' => $this->data,
+            'redirect_url' => $this->getRedirectUrl(),
+            'is_redirect' => $this->isRedirect(),
+            'is_pending' => $this->isPending(),
+        ];
+    }
 }

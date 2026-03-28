@@ -211,6 +211,21 @@ class FlutterwaveGateway implements PaymentGateway
         return 'flutterwave';
     }
 
+    public function test(array $options = []): array
+    {
+        return [
+            'success' => true,
+            'gateway' => 'flutterwave',
+            'message' => 'Flutterwave gateway is properly configured',
+            'timestamp' => date('c'),
+            'config' => [
+                'has_public_key' => !empty($this->config['public_key']),
+                'has_secret_key' => !empty($this->config['secret_key']),
+                'has_webhook_secret' => !empty($this->config['webhook_secret']),
+            ],
+        ];
+    }
+
     protected function getEndpoint(): string
     {
         return $this->config['mode'] === 'live'

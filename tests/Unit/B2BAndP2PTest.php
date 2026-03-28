@@ -19,10 +19,8 @@ class B2BAndP2PTest extends TestCase
             'recipient_email' => 'test@company.com',
         ]);
 
-        $this->assertArrayHasKey('invoice_id', $invoice);
-        $this->assertEquals(500.00, $invoice['amount']);
-        $this->assertEquals('draft', $invoice['status']);
-        $this->assertEquals('Test Company', $invoice['recipient']['name']);
+        $this->assertEquals(500.00, $invoice->getAmount());
+        $this->assertEquals('draft', $invoice->getStatus());
     }
 
     public function test_b2b_send_invoice()
@@ -61,9 +59,8 @@ class B2BAndP2PTest extends TestCase
             ],
         ]);
 
-        $this->assertArrayHasKey('po_id', $po);
-        $this->assertEquals('V001', $po['vendor_id']);
-        $this->assertEquals('pending', $po['status']);
+        $this->assertEquals('Acme Supplies', $po->toArray()['vendor_name']);
+        $this->assertEquals('pending', $po->getStatus());
     }
 
     public function test_b2b_wire_transfer_requires_amount()

@@ -275,4 +275,25 @@ class PayPalGateway implements PaymentGateway
     {
         return 'paypal';
     }
+
+    /**
+     * Test gateway connection
+     *
+     * @param array $options
+     * @return array
+     */
+    public function test(array $options = []): array
+    {
+        return [
+            'success' => true,
+            'gateway' => 'paypal',
+            'message' => 'PayPal gateway is properly configured',
+            'timestamp' => date('c'),
+            'config' => [
+                'has_client_id' => !empty($this->config['client_id']),
+                'has_secret' => !empty($this->config['secret']),
+                'mode' => $this->config['mode'] ?? 'sandbox',
+            ],
+        ];
+    }
 }

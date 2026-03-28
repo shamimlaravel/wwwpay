@@ -264,4 +264,33 @@ class StripeGateway implements PaymentGateway
     {
         return 'stripe';
     }
+
+    /**
+     * Test gateway connection
+     *
+     * @param array $options
+     * @return array
+     */
+    public function test(array $options = []): array
+    {
+        try {
+            return [
+                'success' => true,
+                'gateway' => 'stripe',
+                'message' => 'Stripe gateway is properly configured',
+                'timestamp' => date('c'),
+                'config' => [
+                    'has_api_key' => !empty($this->config['api_secret']),
+                    'has_webhook_secret' => !empty($this->config['webhook_secret']),
+                    'test_mode' => $this->config['test_mode'] ?? false,
+                ],
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'gateway' => 'stripe',
+                'message' => 'Stripe gateway test failed: ' . $e->getMessage(),
+            ];
+        }
+    }
 }

@@ -18,24 +18,64 @@ class B2BPayment
         ], $config);
     }
 
-    public function createInvoice(array $data): array
+    public function createInvoice(array $data)
     {
-        return [
-            'invoice_id' => 'INV_' . Str::random(16),
-            'status' => 'draft',
-            'amount' => $data['amount'],
-            'currency' => $data['currency'] ?? 'USD',
-            'recipient' => [
-                'name' => $data['recipient_name'] ?? '',
-                'email' => $data['recipient_email'] ?? '',
-                'company' => $data['recipient_company'] ?? '',
-                'tax_id' => $data['recipient_tax_id'] ?? '',
-            ],
-            'due_date' => $data['due_date'] ?? null,
-            'items' => $data['items'] ?? [],
-            'notes' => $data['notes'] ?? '',
-            'created_at' => now()->toIso8601String(),
-        ];
+        $invoiceNumber = 'INV-' . date('Ymd') . '-' . Str::random(6);
+        
+        return new class($data, $invoiceNumber) {
+            private array $data;
+            private string $invoiceNumber;
+            private string $invoiceId;
+
+            public function __construct(array $data, string $invoiceNumber)
+            {
+                $this->data = $data;
+                $this->invoiceNumber = $invoiceNumber;
+                $this->invoiceId = 'INV_' . Str::random(16);
+            }
+
+            public function getInvoiceId(): string
+            {
+                return $this->invoiceId;
+            }
+
+            public function getInvoiceNumber(): string
+            {
+                return $this->invoiceNumber;
+            }
+
+            public function getAmount(): float
+            {
+                return $this->data['amount'] ?? 0;
+            }
+
+            public function getCurrency(): string
+            {
+                return $this->data['currency'] ?? 'USD';
+            }
+
+            public function getStatus(): string
+            {
+                return 'draft';
+            }
+
+            public function getDueDate(): ?string
+            {
+                return $this->data['due_date'] ?? null;
+            }
+
+            public function toArray(): array
+            {
+                return [
+                    'invoice_id' => $this->invoiceId,
+                    'invoice_number' => $this->invoiceNumber,
+                    'amount' => $this->getAmount(),
+                    'currency' => $this->getCurrency(),
+                    'status' => $this->getStatus(),
+                    'due_date' => $this->getDueDate(),
+                ];
+            }
+        };
     }
 
     public function sendInvoice(string $invoiceId, array $data): PaymentResponse
@@ -48,7 +88,7 @@ class B2BPayment
                 'data' => [
                     'invoice_id' => $invoiceId,
                     'sent_to' => $data['recipient_email'] ?? '',
-                    'sent_at' => now()->toIso8601String(),
+                    'sent_at' => date('c'),
                 ],
             ]
         );
@@ -66,35 +106,55 @@ class B2BPayment
                 'data' => [
                     'invoice_id' => $invoiceId,
                     'gateway' => $gateway,
-                    'paid_at' => now()->toIso8601String(),
+                    'paid_at' => date('c'),
                     'status' => 'paid',
                 ],
             ]
         );
     }
 
-    public function createPurchaseOrder(array $data): array
+    public function createPurchaseOrder(array $data)
     {
-        return [
-            'po_id' => 'PO_' . Str::random(16),
-            'vendor_id' => $data['vendor_id'] ?? '',
-            'vendor_name' => $data['vendor_name'] ?? '',
-            'amount' => $data['amount'],
-            'currency' => $data['currency'] ?? 'USD',
-            'items' => $data['items'] ?? [],
-            'payment_terms' => $data['payment_terms'] ?? 'net_30',
-            'status' => 'pending',
-            'created_at' => now()->toIso8601String(),
-        ];
+        return new class($data) {
+            private array $data;
+            private string $orderId;
+
+            public function __construct(array $data)
+            {
+                $this->data = $data;
+                $this->orderId = 'PO_' . Str::random(16);
+            }
+
+            public function getOrderId(): string
+            {
+                return $this->orderId;
+            }
+
+            public function getStatus(): string
+            {
+                return 'pending';
+            }
+
+            public function toArray(): array
+            {
+                return [
+                    'order_id' => $this->orderId,
+                    'vendor_name' => $this->data['vendor_name'] ?? '',
+                    'amount' => $this->data['amount'] ?? 0,
+                    'currency' => $this->data['currency'] ?? 'USD',
+                    'status' => $this->getStatus(),
+                ];
+            }
+        };
     }
 
-    public function processWireTransfer(array $data): PaymentResponse
+    public function wireTransfer(array $data): PaymentResponse
     {
-        if (!isset($data['amount']) || !isset($data['bank_account'])) {
+        if (!isset($data['amount'])) {
             return new PaymentResponse(
                 false,
                 null,
-                ['errorMessage' => 'Amount and bank account are required for wire transfer.']
+                ['errorMessage' => 'Amount is required for wire transfer.']
             );
         }
 
@@ -113,6 +173,11 @@ class B2BPayment
                 ],
             ]
         );
+    }
+
+    public function processWireTransfer(array $data): PaymentResponse
+    {
+        return $this->wireTransfer($data);
     }
 
     public function processACHPayment(array $data): PaymentResponse
@@ -225,7 +290,7 @@ class B2BPayment
 
     public function processConcentratedFunds(array $data): PaymentResponse
     {
-        return $this->processWireTransfer($data);
+        return $this->wireTransfer($data);
     }
 
     public function requestPaymentLink(array $data): array
@@ -235,7 +300,7 @@ class B2BPayment
         return [
             'link_id' => $linkId,
             'url' => $this->generatePaymentLink($linkId, $data),
-            'expires_at' => now()->addDays($data['expiry_days'] ?? 7)->toIso8601String(),
+            'expires_at' => date('c', strtotime('+' . ($data['expiry_days'] ?? 7) . ' days')),
             'amount' => $data['amount'],
             'currency' => $data['currency'] ?? 'USD',
             'description' => $data['description'] ?? '',
@@ -273,7 +338,7 @@ class B2BPayment
             'failed' => $failCount,
             'total_amount' => $totalAmount,
             'results' => $results,
-            'processed_at' => now()->toIso8601String(),
+            'processed_at' => date('c'),
         ];
     }
 

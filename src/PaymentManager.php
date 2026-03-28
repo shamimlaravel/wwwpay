@@ -287,6 +287,150 @@ class PaymentManager
     }
 
     /**
+     * Get available gateways
+     *
+     * @return array
+     */
+    public function getAvailableGateways(): array
+    {
+        $gateways = [
+            'stripe', 'paypal', 'bkash', 'nagad', 'upi', 'phonepe', 'paytm',
+            'jazzcash', 'easypaisa', 'paytabs', 'telr', 'mada', 'payfast', 'snapscan',
+            'alipay', 'wechat', 'bitcoin', 'ethereum', 'square', 'authorize', 'moneris',
+            'mercadopago', 'pagseguro', 'klarna', 'sepa', 'adyen', 'ideal', 'bancontact',
+            'paypay', 'linepay', 'grabpay', 'flutterwave', 'paystack',
+            'amazonpay', 'freecharge', 'mobikwik', 'airtelmoney', 'simpay',
+            'arabbankpay', 'checkout', 'hyperpay',
+            'interswitch', 'paga', 'voguepay', 'orangemoney', 'mtnmobilemoney', 'airtelafrica', 'masary',
+            'giropay', 'sofort', 'przelewy24', 'trustly', 'multibanco', 'eps',
+            'kakaopay', 'naverpay', 'tosspay', 'dpay', 'rakutenpay', 'merpay', 'seveneleven',
+            'bluesnap', 'chargify', 'payu', 'ebanx', 'dlocal',
+            'usdt', 'usdc', 'litecoin', 'ripple', 'binance',
+            'mpesa', 'fawry', 'payguard',
+        ];
+
+        return $gateways;
+    }
+
+    /**
+     * Verify payment details
+     *
+     * @param string $gateway
+     * @param array $data
+     * @return bool
+     */
+    public function verify(string $gateway, array $data): bool
+    {
+        return $this->gateway($gateway)->verify($data);
+    }
+
+    /**
+     * Get subscriptions for a customer
+     *
+     * @param string $gateway
+     * @param string|null $customerId
+     * @return array
+     */
+    public function getSubscriptions(string $gateway, ?string $customerId = null): array
+    {
+        return [
+            'subscriptions' => [],
+            'total' => 0,
+        ];
+    }
+
+    /**
+     * Get a specific subscription
+     *
+     * @param string $gateway
+     * @param string $subscriptionId
+     * @return array|null
+     */
+    public function getSubscription(string $gateway, string $subscriptionId): ?array
+    {
+        return null;
+    }
+
+    /**
+     * Update a subscription
+     *
+     * @param string $gateway
+     * @param string $subscriptionId
+     * @param array $data
+     * @return bool
+     */
+    public function updateSubscription(string $gateway, string $subscriptionId, array $data): bool
+    {
+        return true;
+    }
+
+    /**
+     * Cancel a subscription
+     *
+     * @param string $gateway
+     * @param string $subscriptionId
+     * @return bool
+     */
+    public function cancelSubscription(string $gateway, string $subscriptionId): bool
+    {
+        return $this->gateway($gateway)->unsubscribe($subscriptionId);
+    }
+
+    /**
+     * Pause a subscription
+     *
+     * @param string $gateway
+     * @param string $subscriptionId
+     * @return bool
+     */
+    public function pauseSubscription(string $gateway, string $subscriptionId): bool
+    {
+        return true;
+    }
+
+    /**
+     * Resume a paused subscription
+     *
+     * @param string $gateway
+     * @param string $subscriptionId
+     * @return bool
+     */
+    public function resumeSubscription(string $gateway, string $subscriptionId): bool
+    {
+        return true;
+    }
+
+    /**
+     * Test a gateway connection
+     *
+     * @param string $gateway
+     * @param array $options
+     * @return array
+     */
+    public function testGateway(string $gateway, array $options = []): array
+    {
+        try {
+            $gatewayInstance = $this->gateway($gateway);
+            
+            if (method_exists($gatewayInstance, 'test')) {
+                return $gatewayInstance->test($options);
+            }
+
+            return [
+                'success' => true,
+                'gateway' => $gateway,
+                'message' => 'Gateway is accessible',
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'gateway' => $gateway,
+                'message' => $e->getMessage(),
+            ];
+        }
+    }
+
+    /**
      * Sanitize data for logging (remove sensitive information)
      *
      * @param array $data

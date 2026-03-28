@@ -81,6 +81,9 @@ use ShamimStack\WwwPay\Gateways\Crypto\USDCGateway;
 use ShamimStack\WwwPay\Gateways\Crypto\LitecoinGateway;
 use ShamimStack\WwwPay\Gateways\Crypto\RippleGateway;
 use ShamimStack\WwwPay\Gateways\Crypto\BinanceGateway;
+use ShamimStack\WwwPay\Gateways\Africa\Mobile\MpesaGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\Egypt\FawryGateway;
+use ShamimStack\WwwPay\Gateways\Europe\PayguardGateway;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -386,6 +389,18 @@ class PaymentServiceProvider extends ServiceProvider
 
         $this->app->singleton('payment.binance', function ($app) {
             return new BinanceGateway($app['config']->get('payment.gateways.binance'));
+        });
+
+        $this->app->singleton('payment.mpesa', function ($app) {
+            return new MpesaGateway($app['config']->get('payment.gateways.mpesa'));
+        });
+
+        $this->app->singleton('payment.fawry', function ($app) {
+            return new FawryGateway($app['config']->get('payment.gateways.fawry'));
+        });
+
+        $this->app->singleton('payment.payguard', function ($app) {
+            return new PayguardGateway($app['config']->get('payment.gateways.payguard'));
         });
     }
 
