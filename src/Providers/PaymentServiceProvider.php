@@ -43,6 +43,43 @@ use ShamimStack\WwwPay\Gateways\AsiaPacific\LinePayGateway;
 use ShamimStack\WwwPay\Gateways\AsiaPacific\GrabPayGateway;
 use ShamimStack\WwwPay\Gateways\Africa\FlutterwaveGateway;
 use ShamimStack\WwwPay\Gateways\Africa\PaystackGateway;
+use ShamimStack\WwwPay\Gateways\SouthAsia\AirtelMoneyGateway;
+use ShamimStack\WwwPay\Gateways\SouthAsia\India\AmazonPayGateway;
+use ShamimStack\WwwPay\Gateways\SouthAsia\India\FreeChargeGateway;
+use ShamimStack\WwwPay\Gateways\SouthAsia\India\MobikwikGateway;
+use ShamimStack\WwwPay\Gateways\SouthAsia\Pakistan\SimPayGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\Jordan\ArabBankPayGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\UAE\CheckoutGateway;
+use ShamimStack\WwwPay\Gateways\MiddleEast\Saudi\HyperPayGateway;
+use ShamimStack\WwwPay\Gateways\Africa\Nigeria\InterswitchGateway;
+use ShamimStack\WwwPay\Gateways\Africa\Nigeria\PagaGateway;
+use ShamimStack\WwwPay\Gateways\Africa\Nigeria\VoguePayGateway;
+use ShamimStack\WwwPay\Gateways\Africa\Mobile\OrangeMoneyGateway;
+use ShamimStack\WwwPay\Gateways\Africa\Mobile\MtnMobileMoneyGateway;
+use ShamimStack\WwwPay\Gateways\Africa\Mobile\AirtelAfricaGateway;
+use ShamimStack\WwwPay\Gateways\Africa\Egypt\MasaryGateway;
+use ShamimStack\WwwPay\Gateways\Europe\Germany\GiropayGateway;
+use ShamimStack\WwwPay\Gateways\Europe\Germany\SofortGateway;
+use ShamimStack\WwwPay\Gateways\Europe\Poland\Przelewy24Gateway;
+use ShamimStack\WwwPay\Gateways\Europe\TrustlyGateway;
+use ShamimStack\WwwPay\Gateways\Europe\Portugal\MultibancoGateway;
+use ShamimStack\WwwPay\Gateways\Europe\Austria\EPSGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\Korea\KakaoPayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\Korea\NaverPayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\Korea\TossPayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\Korea\DPaysGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\Japan\RakutenPayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\Japan\MerpayGateway;
+use ShamimStack\WwwPay\Gateways\AsiaPacific\Thailand\SevenElevenGateway;
+use ShamimStack\WwwPay\Gateways\Americas\BlueSnapGateway;
+use ShamimStack\WwwPay\Gateways\Americas\ChargifyGateway;
+use ShamimStack\WwwPay\Gateways\Americas\PayUGateway;
+use ShamimStack\WwwPay\Gateways\Americas\EBANXGateway;
+use ShamimStack\WwwPay\Gateways\Americas\dLocalGateway;
+use ShamimStack\WwwPay\Gateways\Crypto\USDTGateway;
+use ShamimStack\WwwPay\Gateways\Crypto\USDCGateway;
+use ShamimStack\WwwPay\Gateways\Crypto\LitecoinGateway;
+use ShamimStack\WwwPay\Gateways\Crypto\RippleGateway;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -196,6 +233,154 @@ class PaymentServiceProvider extends ServiceProvider
 
         $this->app->singleton('payment.paystack', function ($app) {
             return new PaystackGateway($app['config']->get('payment.gateways.paystack'));
+        });
+
+        $this->app->singleton('payment.amazonpay', function ($app) {
+            return new AmazonPayGateway($app['config']->get('payment.gateways.amazonpay'));
+        });
+
+        $this->app->singleton('payment.freecharge', function ($app) {
+            return new FreeChargeGateway($app['config']->get('payment.gateways.freecharge'));
+        });
+
+        $this->app->singleton('payment.mobikwik', function ($app) {
+            return new MobikwikGateway($app['config']->get('payment.gateways.mobikwik'));
+        });
+
+        $this->app->singleton('payment.airtelmoney', function ($app) {
+            return new AirtelMoneyGateway($app['config']->get('payment.gateways.airtelmoney'));
+        });
+
+        $this->app->singleton('payment.simpay', function ($app) {
+            return new SimPayGateway($app['config']->get('payment.gateways.simpay'));
+        });
+
+        $this->app->singleton('payment.arabbankpay', function ($app) {
+            return new ArabBankPayGateway($app['config']->get('payment.gateways.arabbankpay'));
+        });
+
+        $this->app->singleton('payment.checkout', function ($app) {
+            return new CheckoutGateway($app['config']->get('payment.gateways.checkout'));
+        });
+
+        $this->app->singleton('payment.hyperpay', function ($app) {
+            return new HyperPayGateway($app['config']->get('payment.gateways.hyperpay'));
+        });
+
+        $this->app->singleton('payment.interswitch', function ($app) {
+            return new InterswitchGateway($app['config']->get('payment.gateways.interswitch'));
+        });
+
+        $this->app->singleton('payment.paga', function ($app) {
+            return new PagaGateway($app['config']->get('payment.gateways.paga'));
+        });
+
+        $this->app->singleton('payment.voguepay', function ($app) {
+            return new VoguePayGateway($app['config']->get('payment.gateways.voguepay'));
+        });
+
+        $this->app->singleton('payment.orangemoney', function ($app) {
+            return new OrangeMoneyGateway($app['config']->get('payment.gateways.orangemoney'));
+        });
+
+        $this->app->singleton('payment.mtnmobilemoney', function ($app) {
+            return new MtnMobileMoneyGateway($app['config']->get('payment.gateways.mtnmobilemoney'));
+        });
+
+        $this->app->singleton('payment.airtelafrica', function ($app) {
+            return new AirtelAfricaGateway($app['config']->get('payment.gateways.airtelafrica'));
+        });
+
+        $this->app->singleton('payment.masary', function ($app) {
+            return new MasaryGateway($app['config']->get('payment.gateways.masary'));
+        });
+
+        $this->app->singleton('payment.giropay', function ($app) {
+            return new GiropayGateway($app['config']->get('payment.gateways.giropay'));
+        });
+
+        $this->app->singleton('payment.sofort', function ($app) {
+            return new SofortGateway($app['config']->get('payment.gateways.sofort'));
+        });
+
+        $this->app->singleton('payment.przelewy24', function ($app) {
+            return new Przelewy24Gateway($app['config']->get('payment.gateways.przelewy24'));
+        });
+
+        $this->app->singleton('payment.trustly', function ($app) {
+            return new TrustlyGateway($app['config']->get('payment.gateways.trustly'));
+        });
+
+        $this->app->singleton('payment.multibanco', function ($app) {
+            return new MultibancoGateway($app['config']->get('payment.gateways.multibanco'));
+        });
+
+        $this->app->singleton('payment.eps', function ($app) {
+            return new EPSGateway($app['config']->get('payment.gateways.eps'));
+        });
+
+        $this->app->singleton('payment.kakaopay', function ($app) {
+            return new KakaoPayGateway($app['config']->get('payment.gateways.kakaopay'));
+        });
+
+        $this->app->singleton('payment.naverpay', function ($app) {
+            return new NaverPayGateway($app['config']->get('payment.gateways.naverpay'));
+        });
+
+        $this->app->singleton('payment.tosspay', function ($app) {
+            return new TossPayGateway($app['config']->get('payment.gateways.tosspay'));
+        });
+
+        $this->app->singleton('payment.dpay', function ($app) {
+            return new DPaysGateway($app['config']->get('payment.gateways.dpay'));
+        });
+
+        $this->app->singleton('payment.rakutenpay', function ($app) {
+            return new RakutenPayGateway($app['config']->get('payment.gateways.rakutenpay'));
+        });
+
+        $this->app->singleton('payment.merpay', function ($app) {
+            return new MerpayGateway($app['config']->get('payment.gateways.merpay'));
+        });
+
+        $this->app->singleton('payment.seveneleven', function ($app) {
+            return new SevenElevenGateway($app['config']->get('payment.gateways.seveneleven'));
+        });
+
+        $this->app->singleton('payment.bluesnap', function ($app) {
+            return new BlueSnapGateway($app['config']->get('payment.gateways.bluesnap'));
+        });
+
+        $this->app->singleton('payment.chargify', function ($app) {
+            return new ChargifyGateway($app['config']->get('payment.gateways.chargify'));
+        });
+
+        $this->app->singleton('payment.payu', function ($app) {
+            return new PayUGateway($app['config']->get('payment.gateways.payu'));
+        });
+
+        $this->app->singleton('payment.ebanx', function ($app) {
+            return new EBANXGateway($app['config']->get('payment.gateways.ebanx'));
+        });
+
+        $this->app->singleton('payment.dlocal', function ($app) {
+            return new dLocalGateway($app['config']->get('payment.gateways.dlocal'));
+        });
+
+        $this->app->singleton('payment.usdt', function ($app) {
+            return new USDTGateway($app['config']->get('payment.gateways.usdt'));
+        });
+
+        $this->app->singleton('payment.usdc', function ($app) {
+            return new USDCGateway($app['config']->get('payment.gateways.usdc'));
+        });
+
+        $this->app->singleton('payment.litecoin', function ($app) {
+            return new LitecoinGateway($app['config']->get('payment.gateways.litecoin'));
+        });
+
+        $this->app->singleton('payment.ripple', function ($app) {
+            return new RippleGateway($app['config']->get('payment.gateways.ripple'));
         });
     }
 
