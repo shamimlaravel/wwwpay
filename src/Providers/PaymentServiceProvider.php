@@ -84,6 +84,61 @@ use ShamimStack\WwwPay\Gateways\Crypto\BinanceGateway;
 use ShamimStack\WwwPay\Gateways\Africa\Mobile\MpesaGateway;
 use ShamimStack\WwwPay\Gateways\MiddleEast\Egypt\FawryGateway;
 use ShamimStack\WwwPay\Gateways\Europe\PayguardGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\RocketGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\UpayGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\ShurjoPayGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\SSLCommerzGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\AamarPayGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\PathaoGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\CashBabaGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\QPayGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\FastPayGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\BangoPayGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\FlexPayGateway;
+use ShamimStack\WwwPay\Gateways\Bangladesh\OnePayGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Indonesia\GoPayGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Indonesia\OVOGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Indonesia\DANAGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Indonesia\LinkAjaGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Indonesia\MidtransGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Indonesia\XenditGateway;
+use ShamimStack\WwwPay\Gateways\Global\ApplePayGateway;
+use ShamimStack\WwwPay\Gateways\Global\GooglePayGateway;
+use ShamimStack\WwwPay\Gateways\Global\SamsungPayGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Vietnam\MoMoGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Vietnam\ZaloPayGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Vietnam\VNPayGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Vietnam\ViettelPayGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Thailand\TrueMoneyGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Thailand\TwoC2PGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Thailand\OmiseGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Philippines\GCashGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Philippines\MayaGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Philippines\DragonpayGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Malaysia\TouchNGoGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Malaysia\BoostGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Malaysia\IPay88Gateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Singapore\PayNowGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Singapore\NETSGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Myanmar\WavePayGateway;
+use ShamimStack\WwwPay\Gateways\SoutheastAsia\Cambodia\WingGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Brazil\PIXGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Brazil\BoletoGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Brazil\PicPayGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Mexico\OXXOGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Mexico\SPEIGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Mexico\ConektaGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Argentina\MercadoPagoARGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Colombia\PSEGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Chile\WebPayGateway;
+use ShamimStack\WwwPay\Gateways\LatinAmerica\Peru\CulqiGateway;
+use ShamimStack\WwwPay\Gateways\MENA\UAE\TabbyGateway;
+use ShamimStack\WwwPay\Gateways\MENA\UAE\TamaraGateway;
+use ShamimStack\WwwPay\Gateways\MENA\SaudiArabia\STCPayGateway;
+use ShamimStack\WwwPay\Gateways\Global\BNPL\AfterpayGateway;
+use ShamimStack\WwwPay\Gateways\Global\BNPL\AffirmGateway;
+use ShamimStack\WwwPay\Gateways\Global\WiseGateway;
+use ShamimStack\WwwPay\Gateways\Global\PayoneerGateway;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -401,6 +456,226 @@ class PaymentServiceProvider extends ServiceProvider
 
         $this->app->singleton('payment.payguard', function ($app) {
             return new PayguardGateway($app['config']->get('payment.gateways.payguard'));
+        });
+
+        $this->app->singleton('payment.rocket', function ($app) {
+            return new RocketGateway($app['config']->get('payment.gateways.rocket'));
+        });
+
+        $this->app->singleton('payment.upay', function ($app) {
+            return new UpayGateway($app['config']->get('payment.gateways.upay'));
+        });
+
+        $this->app->singleton('payment.shurjopay', function ($app) {
+            return new ShurjoPayGateway($app['config']->get('payment.gateways.shurjopay'));
+        });
+
+        $this->app->singleton('payment.sslcommerz', function ($app) {
+            return new SSLCommerzGateway($app['config']->get('payment.gateways.sslcommerz'));
+        });
+
+        $this->app->singleton('payment.aamarpay', function ($app) {
+            return new AamarPayGateway($app['config']->get('payment.gateways.aamarpay'));
+        });
+
+        $this->app->singleton('payment.pathao', function ($app) {
+            return new PathaoGateway($app['config']->get('payment.gateways.pathao'));
+        });
+
+        $this->app->singleton('payment.cashbaba', function ($app) {
+            return new CashBabaGateway($app['config']->get('payment.gateways.cashbaba'));
+        });
+
+        $this->app->singleton('payment.qpay', function ($app) {
+            return new QPayGateway($app['config']->get('payment.gateways.qpay'));
+        });
+
+        $this->app->singleton('payment.fastpay', function ($app) {
+            return new FastPayGateway($app['config']->get('payment.gateways.fastpay'));
+        });
+
+        $this->app->singleton('payment.bangopay', function ($app) {
+            return new BangoPayGateway($app['config']->get('payment.gateways.bangopay'));
+        });
+
+        $this->app->singleton('payment.flexpay', function ($app) {
+            return new FlexPayGateway($app['config']->get('payment.gateways.flexpay'));
+        });
+
+        $this->app->singleton('payment.onepay', function ($app) {
+            return new OnePayGateway($app['config']->get('payment.gateways.onepay'));
+        });
+
+        $this->app->singleton('payment.gopay', function ($app) {
+            return new GoPayGateway($app['config']->get('payment.gateways.gopay'));
+        });
+
+        $this->app->singleton('payment.ovo', function ($app) {
+            return new OVOGateway($app['config']->get('payment.gateways.ovo'));
+        });
+
+        $this->app->singleton('payment.dana', function ($app) {
+            return new DANAGateway($app['config']->get('payment.gateways.dana'));
+        });
+
+        $this->app->singleton('payment.linkaja', function ($app) {
+            return new LinkAjaGateway($app['config']->get('payment.gateways.linkaja'));
+        });
+
+        $this->app->singleton('payment.midtrans', function ($app) {
+            return new MidtransGateway($app['config']->get('payment.gateways.midtrans'));
+        });
+
+        $this->app->singleton('payment.xendit', function ($app) {
+            return new XenditGateway($app['config']->get('payment.gateways.xendit'));
+        });
+
+        $this->app->singleton('payment.applepay', function ($app) {
+            return new ApplePayGateway($app['config']->get('payment.gateways.applepay'));
+        });
+
+        $this->app->singleton('payment.googlepay', function ($app) {
+            return new GooglePayGateway($app['config']->get('payment.gateways.googlepay'));
+        });
+
+        $this->app->singleton('payment.samsungpay', function ($app) {
+            return new SamsungPayGateway($app['config']->get('payment.gateways.samsungpay'));
+        });
+
+        $this->app->singleton('payment.momo', function ($app) {
+            return new MoMoGateway($app['config']->get('payment.gateways.momo'));
+        });
+
+        $this->app->singleton('payment.zalopay', function ($app) {
+            return new ZaloPayGateway($app['config']->get('payment.gateways.zalopay'));
+        });
+
+        $this->app->singleton('payment.vnpay', function ($app) {
+            return new VNPayGateway($app['config']->get('payment.gateways.vnpay'));
+        });
+
+        $this->app->singleton('payment.viettelpay', function ($app) {
+            return new ViettelPayGateway($app['config']->get('payment.gateways.viettelpay'));
+        });
+
+        $this->app->singleton('payment.truemoney', function ($app) {
+            return new TrueMoneyGateway($app['config']->get('payment.gateways.truemoney'));
+        });
+
+        $this->app->singleton('payment.2c2p', function ($app) {
+            return new TwoC2PGateway($app['config']->get('payment.gateways.2c2p'));
+        });
+
+        $this->app->singleton('payment.omise', function ($app) {
+            return new OmiseGateway($app['config']->get('payment.gateways.omise'));
+        });
+
+        $this->app->singleton('payment.gcash', function ($app) {
+            return new GCashGateway($app['config']->get('payment.gateways.gcash'));
+        });
+
+        $this->app->singleton('payment.maya', function ($app) {
+            return new MayaGateway($app['config']->get('payment.gateways.maya'));
+        });
+
+        $this->app->singleton('payment.dragonpay', function ($app) {
+            return new DragonpayGateway($app['config']->get('payment.gateways.dragonpay'));
+        });
+
+        $this->app->singleton('payment.touchgo', function ($app) {
+            return new TouchNGoGateway($app['config']->get('payment.gateways.touchgo'));
+        });
+
+        $this->app->singleton('payment.boost', function ($app) {
+            return new BoostGateway($app['config']->get('payment.gateways.boost'));
+        });
+
+        $this->app->singleton('payment.ipay88', function ($app) {
+            return new IPay88Gateway($app['config']->get('payment.gateways.ipay88'));
+        });
+
+        $this->app->singleton('payment.paynow', function ($app) {
+            return new PayNowGateway($app['config']->get('payment.gateways.paynow'));
+        });
+
+        $this->app->singleton('payment.nets', function ($app) {
+            return new NETSGateway($app['config']->get('payment.gateways.nets'));
+        });
+
+        $this->app->singleton('payment.wavepay', function ($app) {
+            return new WavePayGateway($app['config']->get('payment.gateways.wavepay'));
+        });
+
+        $this->app->singleton('payment.wing', function ($app) {
+            return new WingGateway($app['config']->get('payment.gateways.wing'));
+        });
+
+        $this->app->singleton('payment.pix', function ($app) {
+            return new PIXGateway($app['config']->get('payment.gateways.pix'));
+        });
+
+        $this->app->singleton('payment.boleto', function ($app) {
+            return new BoletoGateway($app['config']->get('payment.gateways.boleto'));
+        });
+
+        $this->app->singleton('payment.picpay', function ($app) {
+            return new PicPayGateway($app['config']->get('payment.gateways.picpay'));
+        });
+
+        $this->app->singleton('payment.oxxo', function ($app) {
+            return new OXXOGateway($app['config']->get('payment.gateways.oxxo'));
+        });
+
+        $this->app->singleton('payment.spei', function ($app) {
+            return new SPEIGateway($app['config']->get('payment.gateways.spei'));
+        });
+
+        $this->app->singleton('payment.conekta', function ($app) {
+            return new ConektaGateway($app['config']->get('payment.gateways.conekta'));
+        });
+
+        $this->app->singleton('payment.mercadopago_ar', function ($app) {
+            return new MercadoPagoARGateway($app['config']->get('payment.gateways.mercadopago_ar'));
+        });
+
+        $this->app->singleton('payment.pse', function ($app) {
+            return new PSEGateway($app['config']->get('payment.gateways.pse'));
+        });
+
+        $this->app->singleton('payment.webpay', function ($app) {
+            return new WebPayGateway($app['config']->get('payment.gateways.webpay'));
+        });
+
+        $this->app->singleton('payment.culqi', function ($app) {
+            return new CulqiGateway($app['config']->get('payment.gateways.culqi'));
+        });
+
+        $this->app->singleton('payment.tabby', function ($app) {
+            return new TabbyGateway($app['config']->get('payment.gateways.tabby'));
+        });
+
+        $this->app->singleton('payment.tamara', function ($app) {
+            return new TamaraGateway($app['config']->get('payment.gateways.tamara'));
+        });
+
+        $this->app->singleton('payment.stcpay', function ($app) {
+            return new STCPayGateway($app['config']->get('payment.gateways.stcpay'));
+        });
+
+        $this->app->singleton('payment.afterpay', function ($app) {
+            return new AfterpayGateway($app['config']->get('payment.gateways.afterpay'));
+        });
+
+        $this->app->singleton('payment.affirm', function ($app) {
+            return new AffirmGateway($app['config']->get('payment.gateways.affirm'));
+        });
+
+        $this->app->singleton('payment.wise', function ($app) {
+            return new WiseGateway($app['config']->get('payment.gateways.wise'));
+        });
+
+        $this->app->singleton('payment.payoneer', function ($app) {
+            return new PayoneerGateway($app['config']->get('payment.gateways.payoneer'));
         });
     }
 

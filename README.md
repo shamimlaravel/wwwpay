@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-8.1+-blue.svg" alt="PHP">
   <img src="https://img.shields.io/badge/Laravel-9+-red.svg" alt="Laravel">
-  <img src="https://img.shields.io/badge/Gateways-74-orange.svg" alt="Gateways">
+  <img src="https://img.shields.io/badge/Gateways-126-orange.svg" alt="Gateways">
   <img src="https://img.shields.io/badge/Tests-153%20passing-brightgreen.svg" alt="Tests">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
 </p>
@@ -14,11 +14,11 @@
   <img src="https://img.shields.io/github/v/tag/shamimlaravel/wwwpay?label=version" alt="Version">
 </p>
 
-> All-in-one payment gateway package for Laravel with **74 global, crypto, regional payment methods**, and **Binance P2P & B2B** integration in a single unified API.
+> All-in-one payment gateway package for Laravel with **126 global, crypto, regional payment methods**, and **Binance P2P & B2B** integration in a single unified API.
 
 ## Features
 
-- **74 Payment Gateways** - Global, Regional, Cryptocurrency, and Binance P2P/B2B
+- **126 Payment Gateways** - Global, Regional, Cryptocurrency, and Binance P2P/B2B
 - **Unified API** - Consistent interface across all gateways
 - **Multi-currency Support** - Automatic currency conversion
 - **B2B Payments** - Invoices, wire transfers, ACH, corporate cards
@@ -36,17 +36,91 @@
 
 ## Supported Gateways
 
-### Global
+### Global Digital Wallets & BNPL
 | Gateway | Region | Features |
 |---------|---------|----------|
 | Stripe | Worldwide | Cards, Subscriptions, Connect |
 | PayPal | Worldwide | Checkout, Subscriptions, Payouts |
+| Apple Pay | Worldwide | Mobile Payment |
+| Google Pay | Worldwide | Mobile Payment |
+| Samsung Pay | Worldwide | Mobile Payment |
+| Afterpay | Australia/UK/US | Buy Now Pay Later |
+| Affirm | US | Buy Now Pay Later |
+| Wise | Worldwide | International Transfers |
+| Payoneer | Worldwide | Cross-border Payments |
 
 ### Bangladesh
 | Gateway | Type |
 |---------|------|
 | bKash | Mobile Money |
 | Nagad | Mobile Banking |
+| Rocket | Mobile Banking |
+| Upay | Mobile Wallet |
+| ShurjoPay | Payment Gateway |
+| SSLCommerz | Payment Gateway |
+| AamarPay | Payment Gateway |
+| Pathao | Delivery & Payment |
+| CashBaba | Payment Gateway |
+| QPay | Payment Gateway |
+| FastPay | Payment Gateway |
+| BangoPay | Payment Gateway |
+| FlexPay | Payment Gateway |
+| OnePay | Payment Gateway |
+
+### Southeast Asia - Indonesia
+| Gateway | Type |
+|---------|------|
+| GoPay | Digital Wallet |
+| OVO | Digital Wallet |
+| DANA | Digital Wallet |
+| LinkAja | E-wallet |
+| Midtrans | Payment Gateway |
+| Xendit | Payment Gateway |
+
+### Southeast Asia - Vietnam
+| Gateway | Type |
+|---------|------|
+| MoMo | Mobile Wallet |
+| ZaloPay | Digital Wallet |
+| VNPay | Payment Gateway |
+| ViettelPay | Mobile Payment |
+
+### Southeast Asia - Thailand
+| Gateway | Type |
+|---------|------|
+| TrueMoney | Mobile Wallet |
+| 2C2P | Payment Gateway |
+| Omise | Payment Gateway |
+
+### Southeast Asia - Philippines
+| Gateway | Type |
+|---------|------|
+| GCash | Mobile Wallet |
+| Maya | Digital Wallet |
+| Dragonpay | Payment Gateway |
+
+### Southeast Asia - Malaysia
+| Gateway | Type |
+|---------|------|
+| Touch 'n Go | E-wallet |
+| Boost | Digital Wallet |
+| iPay88 | Payment Gateway |
+
+### Southeast Asia - Singapore
+| Gateway | Type |
+|---------|------|
+| PayNow | Real-time Payments |
+| NETS | Payment Network |
+
+### Southeast Asia - Myanmar
+| Gateway | Type |
+|---------|------|
+| WavePay | Mobile Money |
+
+### Southeast Asia - Cambodia
+| Gateway | Type |
+|---------|------|
+| Wing | Mobile Money |
 
 ### India
 | Gateway | Type |
@@ -70,7 +144,7 @@
 |---------|---------|------|
 | AirtelMoney | Multiple | Mobile Money |
 
-### Middle East
+### Middle East & MENA
 | Gateway | Country | Type |
 |---------|---------|------|
 | PayTabs | Regional | Online Payments |
@@ -80,6 +154,31 @@
 | Checkout | UAE | Payment Gateway |
 | HyperPay | Saudi Arabia | Payment Gateway |
 | Fawry | Egypt | E-payment Platform |
+| Tabby | UAE | Buy Now Pay Later |
+| Tamara | Saudi Arabia | BNPL |
+| STC Pay | Saudi Arabia | Digital Payments |
+
+### Latin America - Brazil
+| Gateway | Type |
+|---------|------|
+| PIX | Instant Payment |
+| Boleto | Bank Slip |
+| PicPay | Digital Wallet |
+
+### Latin America - Mexico
+| Gateway | Type |
+|---------|------|
+| OXXO | Cash Voucher |
+| SPEI | Bank Transfer |
+| Conekta | Payment Gateway |
+
+### Latin America - Other
+| Gateway | Country | Type |
+|---------|---------|------|
+| MercadoPago | Argentina | Payment Gateway |
+| PSE | Colombia | Bank Transfer |
+| WebPay | Chile | Payment Gateway |
+| Culqi | Peru | Payment Gateway |
 
 ### Africa
 | Gateway | Country | Type |
